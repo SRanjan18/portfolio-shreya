@@ -175,8 +175,12 @@ document.querySelectorAll(".tech-lane, .tech-group").forEach((lane) => {
 });
 
 document.querySelectorAll(".project-actions button").forEach((button) => {
+  const card = button.closest(".project-card");
+  if (!card?.querySelector(".project-details")) {
+    button.remove();
+    return;
+  }
   button.addEventListener("click", () => {
-    const card = button.closest(".project-card");
     if (!card) return;
     const expanded = card.classList.toggle("is-expanded");
     button.textContent = expanded ? "Show less ↑" : "Know more ↓";
@@ -188,11 +192,22 @@ document.querySelectorAll(".experience-more").forEach((button) => {
     const card = button.closest(".experience-card");
     if (!card) return;
     const expanded = card.classList.toggle("is-expanded");
-    button.textContent = expanded ? "Show less ↑" : "Know more ↗";
+    button.textContent = expanded ? "Showing details" : "Know more ↓";
   });
 });
 
 const experienceCards = [...document.querySelectorAll(".experience-card")];
+experienceCards.forEach((card) => {
+  const opener = card.querySelector(".experience-more");
+  const closer = card.querySelector(".experience-close");
+  const closeCard = () => {
+    card.classList.remove("is-expanded");
+    if (opener) opener.textContent = "Know more ↓";
+  };
+  closer?.addEventListener("click", closeCard);
+  card.addEventListener("mouseleave", closeCard);
+});
+
 function updateExperienceStack() {
   experienceCards.forEach((card, index) => {
     const rect = card.getBoundingClientRect();
