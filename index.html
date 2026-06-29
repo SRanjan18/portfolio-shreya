@@ -25,6 +25,7 @@
 
   <canvas id="neural-bg" aria-hidden="true"></canvas>
   <canvas id="cursor-trail" aria-hidden="true"></canvas>
+  <div class="ai-chaser" aria-hidden="true">✦</div>
 
   <header class="header">
     <a class="brand" href="#home" aria-label="Shreya Ranjan home">Shreya<span>Ranjan</span></a>
@@ -125,39 +126,115 @@ return safe_response(answer)</code></pre>
         <p class="eyebrow">Selected AI Projects</p>
         <h2>AI apps with real product surfaces.</h2>
       </div>
-      <div class="project-stack">
-        <article class="project reveal">
-          <div class="project-visual story">
-            <span>Story Agent</span>
-            <p>character + setting + genre → narrative</p>
-          </div>
-          <div>
-            <h3>AI Story Generator</h3>
-            <p>AI-powered storytelling application that generates dynamic stories from user-provided characters, settings, and genres using LangChain prompt orchestration and Groq-hosted LLMs.</p>
-            <ul><li>Python</li><li>LangChain</li><li>Groq LLM</li><li>Streamlit</li></ul>
-          </div>
+      <div class="project-grid">
+        <article class="project-card reveal ai-story">
+          <p class="project-kicker">AI Storytelling · Generative AI Project</p>
+          <h3>AI Story Generator</h3>
+          <time>May 2026 – May 2026</time>
+          <div class="project-scene"><strong>Story Agent</strong><span>Character → Setting → Genre → Narrative</span></div>
+          <p>Generates dynamic stories from user inputs using prompt orchestration and Groq-hosted LLM responses.</p>
+          <ul><li>Python</li><li>LangChain</li><li>Groq</li><li>Streamlit</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
         </article>
-        <article class="project reveal">
-          <div class="project-visual image">
-            <span>Text → Image</span>
-            <p>prompt → generated artwork</p>
-          </div>
-          <div>
-            <h3>AI Text-to-Image Generator</h3>
-            <p>Flask application that converts prompts into AI-generated images with Hugging Face Inference APIs, responsive HTML/CSS UI, and secure token handling.</p>
-            <ul><li>Python</li><li>Flask</li><li>Hugging Face</li><li>HTML/CSS</li></ul>
-          </div>
+
+        <article class="project-card reveal ai-image">
+          <p class="project-kicker">Text-to-Image · AI Creative App</p>
+          <h3>AI Text-to-Image Generator</h3>
+          <time>May 2026 – May 2026</time>
+          <div class="project-scene"><strong>Image Agent</strong><span>Prompt → Model → Generated visual</span></div>
+          <p>Converts prompts into generated images through a Flask interface and Hugging Face inference workflow.</p>
+          <ul><li>Python</li><li>Flask</li><li>Hugging Face</li><li>HTML/CSS</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
         </article>
-        <article class="project reveal">
-          <div class="project-visual chat">
-            <span>Gemini Chat</span>
-            <p>user ↔ Flask ↔ Gemini API</p>
-          </div>
-          <div>
-            <h3>Gemini Flask Chatbot</h3>
-            <p>Full-stack AI chatbot that generates real-time conversational responses using Google Gemini API, Flask services, and an interactive JavaScript frontend.</p>
-            <ul><li>Python</li><li>Flask</li><li>Gemini API</li><li>JavaScript</li></ul>
-          </div>
+
+        <article class="project-card reveal ai-chat">
+          <p class="project-kicker">Conversational AI · Gemini Project</p>
+          <h3>Gemini Flask Chatbot</h3>
+          <time>May 2026 – May 2026</time>
+          <div class="project-scene"><strong>Gemini Chat</strong><span>User ↔ Flask ↔ Gemini API</span></div>
+          <p>Real-time chatbot experience using Gemini API responses, Flask services, and an interactive frontend.</p>
+          <ul><li>Python</li><li>Flask</li><li>Gemini API</li><li>JavaScript</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal notes">
+          <p class="project-kicker">Productivity Tool · Notes App</p>
+          <h3>Project Notes</h3>
+          <time>Oct 2023 – Oct 2023</time>
+          <div class="project-scene"><strong>Notes Board</strong><span>Create · Edit · Organize · Persist</span></div>
+          <p>A simple notes workspace for capturing tasks and project thoughts with a clean browser-based UI.</p>
+          <ul><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Local State</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal paint">
+          <p class="project-kicker">Canvas Interaction · Browser Project</p>
+          <h3>Paint App</h3>
+          <time>Oct 2023 – Oct 2023</time>
+          <div class="project-scene"><strong>Canvas</strong><span>Draw · Detect · Delete · Reset</span></div>
+          <p>Lets users draw and manage shapes directly on an HTML canvas while tracking interaction state.</p>
+          <ul><li>HTML Canvas</li><li>JavaScript</li><li>Mouse Events</li><li>State</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal exam">
+          <p class="project-kicker">MCQ Assessment Console · Academic Project</p>
+          <h3>Online Examination System</h3>
+          <time>Jul 2020 – Dec 2020</time>
+          <div class="project-scene"><strong>Exam Console</strong><span>Login → Questions → Score</span></div>
+          <p>Console-based MCQ platform that authenticates students, presents questions, and calculates scores.</p>
+          <ul><li>Java</li><li>JDBC</li><li>MySQL</li><li>Maven</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal shopping">
+          <p class="project-kicker">Commerce Console · Academic Project</p>
+          <h3>Online Shopping System</h3>
+          <time>Jan 2021 – Jun 2021</time>
+          <div class="project-scene"><strong>Shop Flow</strong><span>Catalogue → Cart → Invoice</span></div>
+          <p>Simulates customer authentication, stock-aware purchasing, invoicing, and purchase history.</p>
+          <ul><li>Java</li><li>JDBC</li><li>MySQL</li><li>OOP</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal rps">
+          <p class="project-kicker">Game Logic · Browser Project</p>
+          <h3>RPS Battle Arena</h3>
+          <time>Jan 2021 – Jun 2021</time>
+          <div class="project-scene"><strong>Battle Arena</strong><span>Rock · Paper · Scissors · Score</span></div>
+          <p>Interactive rock-paper-scissors game focused on event handling, score tracking, and UI feedback.</p>
+          <ul><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Game Logic</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal ttt">
+          <p class="project-kicker">Game State · Browser Project</p>
+          <h3>Tic Tac Toe</h3>
+          <time>Jan 2021 – Jun 2021</time>
+          <div class="project-scene"><strong>3×3 Grid</strong><span>Turns · Win checks · Restart</span></div>
+          <p>Classic browser game implementing board state, turn switching, winner detection, and reset flow.</p>
+          <ul><li>JavaScript</li><li>HTML</li><li>CSS</li><li>State</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal calc">
+          <p class="project-kicker">Utility UI · Browser Project</p>
+          <h3>SimpleCalx</h3>
+          <time>Jan 2021 – Jun 2021</time>
+          <div class="project-scene"><strong>Calculator</strong><span>Input · Operation · Result</span></div>
+          <p>Lightweight calculator interface for arithmetic operations with simple state and display handling.</p>
+          <ul><li>JavaScript</li><li>HTML</li><li>CSS</li><li>UI Logic</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
+        </article>
+
+        <article class="project-card reveal asnmt">
+          <p class="project-kicker">Frontend Practice · Assignment Project</p>
+          <h3>ASNMNT</h3>
+          <time>Jan 2021 – Jun 2021</time>
+          <div class="project-scene"><strong>UI Practice</strong><span>Layout · Components · Styling</span></div>
+          <p>Frontend assignment project focused on structured markup, responsive styling, and interaction basics.</p>
+          <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive UI</li></ul>
+          <div class="project-actions"><a href="https://github.com/Shreyara18" target="_blank" rel="noreferrer">Source code ↗</a><button type="button">Know more ↓</button></div>
         </article>
       </div>
     </section>
@@ -167,14 +244,71 @@ return safe_response(answer)</code></pre>
         <p class="eyebrow">AI Engineering Stack</p>
         <h2>From prompts to production workflows.</h2>
       </div>
-      <div class="skill-matrix reveal">
-        <div><h3>Generative AI</h3><p>M365 Copilot, Claude, prompt engineering, AI agents, knowledge grounding, RAG, embeddings.</p></div>
-        <div><h3>Search & NLP</h3><p>Azure AI Search, semantic search, vector search, TF-IDF, cosine similarity, text processing.</p></div>
-        <div><h3>Cloud & APIs</h3><p>Azure Blob Storage, Azure Functions, Adobe Firefly API, OAuth, Hugging Face, Gemini, Groq.</p></div>
-        <div><h3>Build Stack</h3><p>Python, SQL, Flask, Streamlit, Pandas, OpenPyXL, PostgreSQL, MySQL, ChromaDB.</p></div>
-      </div>
-      <div class="ticker" aria-hidden="true">
-        <div><span>RAG</span><span>AI Agents</span><span>Azure AI Search</span><span>Prompt Engineering</span><span>Vector Search</span><span>LangChain</span><span>Claude</span><span>Python</span></div>
+      <div class="tech-flow reveal" aria-label="Technology stack grouped by skill areas">
+        <div class="tech-lane split-lane">
+          <div class="tech-group">
+            <div class="tech-lane-label">Programming Languages</div>
+            <div class="tech-strip"><div class="tech-strip-track">
+              <span><b class="logo-python"></b><em>Python</em></span><span><b class="logo-sql"></b><em>SQL</em></span><span><b class="logo-html"></b><em>HTML</em></span><span><b class="logo-css"></b><em>CSS</em></span>
+              <span><b class="logo-python"></b><em>Python</em></span><span><b class="logo-sql"></b><em>SQL</em></span><span><b class="logo-html"></b><em>HTML</em></span><span><b class="logo-css"></b><em>CSS</em></span>
+            </div></div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-lane-label">Databases</div>
+            <div class="tech-strip"><div class="tech-strip-track">
+              <span><b class="logo-postgres"></b><em>PostgreSQL</em></span><span><b class="logo-mysql"></b><em>MySQL</em></span><span><b class="logo-vector"></b><em>ChromaDB</em></span>
+              <span><b class="logo-postgres"></b><em>PostgreSQL</em></span><span><b class="logo-mysql"></b><em>MySQL</em></span><span><b class="logo-vector"></b><em>ChromaDB</em></span>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="tech-lane reverse">
+          <div class="tech-lane-label">Generative AI & AI Engineering</div>
+          <div class="tech-strip"><div class="tech-strip-track">
+            <span><b class="logo-copilot"></b><em>M365 Copilot</em></span><span><b class="logo-claude"></b><em>Claude</em></span><span><b class="logo-prompt"></b><em>Prompt Engineering</em></span><span><b class="logo-agent"></b><em>AI Agents</em></span><span><b class="logo-rag"></b><em>RAG</em></span><span><b class="logo-ground"></b><em>Knowledge Grounding</em></span><span><b class="logo-embed"></b><em>Embeddings</em></span><span><b class="logo-search"></b><em>Semantic Search</em></span><span><b class="logo-vector"></b><em>Vector Search</em></span>
+            <span><b class="logo-copilot"></b><em>M365 Copilot</em></span><span><b class="logo-claude"></b><em>Claude</em></span><span><b class="logo-prompt"></b><em>Prompt Engineering</em></span><span><b class="logo-agent"></b><em>AI Agents</em></span><span><b class="logo-rag"></b><em>RAG</em></span><span><b class="logo-ground"></b><em>Knowledge Grounding</em></span><span><b class="logo-embed"></b><em>Embeddings</em></span><span><b class="logo-search"></b><em>Semantic Search</em></span><span><b class="logo-vector"></b><em>Vector Search</em></span>
+          </div></div>
+        </div>
+
+        <div class="tech-lane">
+          <div class="tech-lane-label">NLP & Data Processing</div>
+          <div class="tech-strip"><div class="tech-strip-track">
+            <span><b class="logo-nlp"></b><em>NLP</em></span><span><b class="logo-matrix"></b><em>TF-IDF</em></span><span><b class="logo-wave"></b><em>Cosine Similarity</em></span><span><b class="logo-pandas"></b><em>Pandas</em></span><span><b class="logo-sheet"></b><em>OpenPyXL</em></span><span><b class="logo-gear"></b><em>Data Processing</em></span><span><b class="logo-wave"></b><em>Text Similarity</em></span>
+            <span><b class="logo-nlp"></b><em>NLP</em></span><span><b class="logo-matrix"></b><em>TF-IDF</em></span><span><b class="logo-wave"></b><em>Cosine Similarity</em></span><span><b class="logo-pandas"></b><em>Pandas</em></span><span><b class="logo-sheet"></b><em>OpenPyXL</em></span><span><b class="logo-gear"></b><em>Data Processing</em></span><span><b class="logo-wave"></b><em>Text Similarity</em></span>
+          </div></div>
+        </div>
+
+        <div class="tech-lane triple-lane reverse">
+          <div class="tech-group">
+            <div class="tech-lane-label">Cloud & Search Technologies</div>
+            <div class="tech-strip"><div class="tech-strip-track">
+              <span><b class="logo-azure"></b><em>Azure AI Search</em></span><span><b class="logo-azure"></b><em>Blob Storage</em></span><span><b class="logo-azure"></b><em>Azure Functions</em></span><span><b class="logo-search"></b><em>Search Optimization</em></span>
+              <span><b class="logo-azure"></b><em>Azure AI Search</em></span><span><b class="logo-azure"></b><em>Blob Storage</em></span><span><b class="logo-azure"></b><em>Azure Functions</em></span><span><b class="logo-search"></b><em>Search Optimization</em></span>
+            </div></div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-lane-label">APIs & Integrations</div>
+            <div class="tech-strip"><div class="tech-strip-track">
+              <span><b class="logo-spark"></b><em>Firefly API</em></span><span><b class="logo-mic"></b><em>Transcription API</em></span><span><b class="logo-lock"></b><em>OAuth</em></span><span><b class="logo-api"></b><em>REST APIs</em></span>
+              <span><b class="logo-spark"></b><em>Firefly API</em></span><span><b class="logo-mic"></b><em>Transcription API</em></span><span><b class="logo-lock"></b><em>OAuth</em></span><span><b class="logo-api"></b><em>REST APIs</em></span>
+            </div></div>
+          </div>
+          <div class="tech-group">
+            <div class="tech-lane-label">AI Frameworks & LLM Tools</div>
+            <div class="tech-strip"><div class="tech-strip-track">
+              <span><b class="logo-chain"></b><em>LangChain</em></span><span><b class="logo-bolt"></b><em>Groq API</em></span><span><b class="logo-gemini"></b><em>Gemini API</em></span><span><b class="logo-hf"></b><em>Hugging Face</em></span>
+              <span><b class="logo-chain"></b><em>LangChain</em></span><span><b class="logo-bolt"></b><em>Groq API</em></span><span><b class="logo-gemini"></b><em>Gemini API</em></span><span><b class="logo-hf"></b><em>Hugging Face</em></span>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="tech-lane reverse">
+          <div class="tech-lane-label">Web Development & Tools</div>
+          <div class="tech-strip"><div class="tech-strip-track">
+            <span><b class="logo-flask"></b><em>Flask</em></span><span><b class="logo-streamlit"></b><em>Streamlit</em></span><span><b class="logo-js"></b><em>JavaScript</em></span><span><b class="logo-react"></b><em>React</em></span><span><b class="logo-git"></b><em>Git</em></span><span><b class="logo-github"></b><em>GitHub</em></span><span><b class="logo-vercel"></b><em>Vercel</em></span><span><b class="logo-render"></b><em>Render</em></span><span><b class="logo-test"></b><em>Testing</em></span>
+            <span><b class="logo-flask"></b><em>Flask</em></span><span><b class="logo-streamlit"></b><em>Streamlit</em></span><span><b class="logo-js"></b><em>JavaScript</em></span><span><b class="logo-react"></b><em>React</em></span><span><b class="logo-git"></b><em>Git</em></span><span><b class="logo-github"></b><em>GitHub</em></span><span><b class="logo-vercel"></b><em>Vercel</em></span><span><b class="logo-render"></b><em>Render</em></span><span><b class="logo-test"></b><em>Testing</em></span>
+          </div></div>
+        </div>
       </div>
     </section>
 
@@ -218,10 +352,9 @@ return safe_response(answer)</code></pre>
     </section>
   </main>
   <footer>
-    <a class="brand" href="#home" aria-label="Back to top">Shreya<span>Ranjan</span></a>
-    <p>Designed and built for AI Software Engineer roles.</p>
-    <p class="footer-stack">Built with HTML, CSS, JavaScript, Canvas animations, and GitHub Pages.</p>
-    <p>2026 · India</p>
+    <p>Designed with heart ❤️ by Shreya Ranjan.</p>
+    <p class="footer-stack">Built with <a href="https://openai.com/codex/" target="_blank" rel="noreferrer">Codex</a> · Deployed on <a href="https://vercel.com/" target="_blank" rel="noreferrer">Vercel</a>.</p>
+    <p>2026 · Hyderabad, India</p>
     <a class="back-top" href="#home">Back to top ↑</a>
   </footer>
 </body>
