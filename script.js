@@ -6,6 +6,9 @@ const chaser = document.querySelector(".ai-chaser");
 const reveals = [...document.querySelectorAll(".reveal")];
 const glowCards = [...document.querySelectorAll(".work-card, .project, .project-card, .skill-matrix > div, .tech-strip span")];
 const ticker = document.querySelector(".ticker div");
+const themeToggle = document.querySelector(".theme-toggle");
+const musicToggle = document.querySelector(".music-toggle");
+const musicSymbol = document.querySelector(".music-symbol");
 
 let width = 0;
 let height = 0;
@@ -14,6 +17,70 @@ let mouse = { x: innerWidth / 2, y: innerHeight / 2 };
 let chaserPoint = { x: innerWidth / 2, y: innerHeight / 2 };
 let time = 0;
 let trailPoints = [];
+let audioCtx = null;
+let musicTimer = null;
+let musicStep = 0;
+
+const savedTheme = localStorage.getItem("shreya-theme");
+if (savedTheme === "light") {
+  document.body.classList.add("light-theme");
+  if (themeToggle) {
+    themeToggle.textContent = "☀";
+    themeToggle.setAttribute("aria-label", "Switch to dark theme");
+  }
+}
+
+function playNote(frequency, when, duration = .16) {
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+  osc.type = musicStep % 4 === 0 ? "triangle" : "sine";
+  osc.frequency.setValueAtTime(frequency, when);
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(1450, when);
+  gain.gain.setValueAtTime(0.0001, when);
+  gain.gain.exponentialRampToValueAtTime(0.105, when + .018);
+  gain.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start(when);
+  osc.stop(when + duration + .025);
+}
+
+function tickMusic() {
+  if (!audioCtx) return;
+  const scale = [523.25, 659.25, 783.99, 987.77, 880, 783.99, 659.25, 587.33];
+  const bass = [130.81, 164.81, 196, 246.94];
+  const now = audioCtx.currentTime;
+  playNote(scale[musicStep % scale.length], now, .14);
+  if (musicStep % 2 === 0) playNote(scale[(musicStep + 2) % scale.length] * 1.5, now + .055, .12);
+  if (musicStep % 4 === 0) playNote(bass[(musicStep / 4) % bass.length], now, .2);
+  musicStep += 1;
+}
+
+function stopMusic() {
+  if (musicTimer) clearInterval(musicTimer);
+  musicTimer = null;
+  musicToggle?.classList.remove("is-active");
+  if (musicToggle) {
+    musicToggle.setAttribute("aria-label", "Play portfolio music");
+    if (musicSymbol) musicSymbol.textContent = "♪";
+  }
+}
+
+function startMusic() {
+  audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+  audioCtx.resume();
+  tickMusic();
+  musicTimer = setInterval(tickMusic, 185);
+  musicToggle?.classList.add("is-active");
+  if (musicToggle) {
+    musicToggle.setAttribute("aria-label", "Pause portfolio music");
+    if (musicSymbol) musicSymbol.textContent = "Ⅱ";
+  }
+}
 
 function resize() {
   width = innerWidth * devicePixelRatio;
@@ -86,6 +153,18 @@ if (ticker) {
   ticker.innerHTML += ticker.innerHTML;
 }
 
+themeToggle?.addEventListener("click", () => {
+  const light = document.body.classList.toggle("light-theme");
+  localStorage.setItem("shreya-theme", light ? "light" : "dark");
+  themeToggle.textContent = light ? "☀" : "☾";
+  themeToggle.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+});
+
+musicToggle?.addEventListener("click", () => {
+  if (musicTimer) stopMusic();
+  else startMusic();
+});
+
 document.querySelectorAll(".tech-lane, .tech-group").forEach((lane) => {
   lane.addEventListener("click", () => {
     lane.classList.toggle("is-paused");
@@ -101,6 +180,15 @@ document.querySelectorAll(".project-actions button").forEach((button) => {
     if (!card) return;
     const expanded = card.classList.toggle("is-expanded");
     button.textContent = expanded ? "Show less ↑" : "Know more ↓";
+  });
+});
+
+document.querySelectorAll(".experience-more").forEach((button) => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".experience-card");
+    if (!card) return;
+    const expanded = card.classList.toggle("is-expanded");
+    button.textContent = expanded ? "Show less ↑" : "Know more ↗";
   });
 });
 

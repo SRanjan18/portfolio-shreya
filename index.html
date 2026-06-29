@@ -31,11 +31,19 @@
     <a class="brand" href="#home" aria-label="Shreya Ranjan home">Shreya<span>Ranjan</span></a>
     <nav>
       <a href="#work">AI Work</a>
+      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Stack</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="hire" href="#contact">Let’s build AI ↗</a>
+    <div class="header-actions" aria-label="Portfolio controls">
+      <button class="icon-btn music-toggle" type="button" aria-label="Play portfolio music">
+        <span class="music-tooltip">Play me</span>
+        <span class="music-symbol">♪</span>
+      </button>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">☾</button>
+      <a class="hire" href="#contact">Let’s build AI ↗</a>
+    </div>
   </header>
 
   <main>
@@ -50,15 +58,33 @@
           <a class="btn ghost" href="https://www.linkedin.com/in/shreya-ranjan-ai-software-engineer/" target="_blank" rel="noreferrer">LinkedIn profile</a>
         </div>
       </div>
-      <div class="hero-lab reveal" aria-label="Animated AI system diagram">
-        <div class="orbital-system">
-          <div class="core-agent">AI</div>
-          <span style="--i:0">RAG</span>
-          <span style="--i:1">Agents</span>
-          <span style="--i:2">NLP</span>
-          <span style="--i:3">Azure</span>
-          <span style="--i:4">Python</span>
-          <span style="--i:5">LLMs</span>
+      <div class="hero-lab reveal" aria-label="Animated AI robot assistant">
+        <div class="robot-stage">
+          <div class="robot-orbit orbit-one"></div>
+          <div class="robot-orbit orbit-two"></div>
+          <div class="ai-chip chip-rag">RAG</div>
+          <div class="ai-chip chip-nlp">NLP</div>
+          <div class="ai-chip chip-llm">LLM</div>
+          <div class="ai-robot" aria-hidden="true">
+            <div class="robot-antenna"><i></i></div>
+            <div class="robot-head">
+              <span class="robot-eye"></span>
+              <span class="robot-eye"></span>
+              <b class="robot-smile"></b>
+            </div>
+            <div class="robot-neck"></div>
+            <div class="robot-body">
+              <span class="robot-core">AI</span>
+              <i></i><i></i><i></i>
+            </div>
+            <div class="robot-arm left"></div>
+            <div class="robot-arm right"></div>
+            <div class="robot-base"></div>
+          </div>
+          <div class="holo-panel">
+            <span>agent online</span>
+            <strong>retrieval • reasoning • automation</strong>
+          </div>
         </div>
         <div class="terminal-card">
           <div class="terminal-top"><i></i><i></i><i></i><span>agent-router.py</span></div>
@@ -312,15 +338,195 @@ return safe_response(answer)</code></pre>
       </div>
     </section>
 
-    <section class="section experience">
+    <section id="experience" class="section experience">
       <div class="section-head reveal">
         <p class="eyebrow">Experience</p>
         <h2>Software foundation, AI direction.</h2>
       </div>
       <div class="timeline experience-stack">
-        <article class="timeline-item experience-card reveal"><span>2024 — Present</span><h3>Accenture · Product App Development Analyst</h3><p>Enterprise AI solutions, intelligent automation, AI-powered search, localization agents, content generation workflows, and document intelligence.</p></article>
-        <article class="timeline-item experience-card reveal"><span>2023 — 2024</span><h3>Amazon · Transportation Specialist I</h3><p>Operational analytics, shipment trends, capacity utilization, dashboards, reporting, and process improvement.</p></article>
-        <article class="timeline-item experience-card reveal"><span>2022 — 2023</span><h3>Wiz Freight · Software Development Engineer - 1</h3><p>Backend functionality, logistics workflows, API integrations, database operations, and dashboard/reporting features.</p></article>
+        <article class="experience-card reveal accenture-card">
+          <div class="experience-copy">
+            <div class="experience-topline">
+              <span>Apr 2024 — Present</span>
+              <button class="experience-more" type="button">Know more ↗</button>
+            </div>
+            <div class="company-row">
+              <div class="company-logo accenture-logo">&gt;</div>
+              <div>
+                <p class="company-name">Accenture</p>
+                <p class="company-meta">Full-time · Hybrid</p>
+              </div>
+            </div>
+            <h3>Product App Development Analyst</h3>
+            <p>Building enterprise AI and intelligent automation solutions across localization, knowledge grounding, document search, and AI-assisted product workflows.</p>
+            <div class="role-timeline">
+              <div>
+                <strong>Product App Development Analyst</strong>
+                <small>Jun 2026 — Present · Hyderabad, Telangana, India</small>
+                <em>Anthropic Claude · AI solution delivery</em>
+              </div>
+              <div>
+                <strong>Packaged App Development Associate</strong>
+                <small>Apr 2024 — May 2026 · Bengaluru, Karnataka, India</small>
+                <em>Gen AI · Python · prompt engineering · enterprise apps</em>
+              </div>
+            </div>
+            <div class="experience-details">
+              <ul>
+                <li>Worked on AI-powered localization and translation-agent workflows with grounding rules and controlled responses.</li>
+                <li>Built proof-of-concepts around Azure AI Search, embeddings, semantic retrieval, and enterprise document intelligence.</li>
+                <li>Supported product application delivery across AI workflows, automation, APIs, and enterprise app modernization.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="experience-visual">
+            <div class="org-shot accenture-shot"><strong>Accenture</strong><span>AI delivery · enterprise apps · intelligent automation</span></div>
+          </div>
+          <div class="experience-back">
+            <span>Work done</span>
+            <h3>Accenture impact</h3>
+            <ul>
+              <li>Worked on AI-powered localization and translation-agent workflows with grounding rules and controlled responses.</li>
+              <li>Built proof-of-concepts around Azure AI Search, embeddings, semantic retrieval, and enterprise document intelligence.</li>
+              <li>Supported product application delivery across AI workflows, automation, APIs, and enterprise app modernization.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-card reveal amazon-card">
+          <div class="experience-copy">
+            <div class="experience-topline">
+              <span>Nov 2023 — Apr 2024</span>
+              <button class="experience-more" type="button">Know more ↗</button>
+            </div>
+            <div class="company-row">
+              <div class="company-logo amazon-logo">⌣</div>
+              <div>
+                <p class="company-name">Amazon</p>
+                <p class="company-meta">Full-time · Hyderabad, Telangana, India · Hybrid</p>
+              </div>
+            </div>
+            <h3>Transportation Specialist 1</h3>
+            <p>Worked across transportation operations, shipment workflows, exception handling, reporting, and process coordination in a fast-moving logistics environment.</p>
+            <div class="experience-details">
+              <ul>
+                <li>Analyzed shipment movement patterns, operational queues, and issue trends to support faster resolution.</li>
+                <li>Coordinated with stakeholders to reduce friction in transportation workflows and improve daily execution.</li>
+                <li>Built a strong operational foundation that later shaped her product, data, and automation thinking.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="experience-visual">
+            <div class="org-shot amazon-shot"><strong>Amazon</strong><span>transportation · operations · reporting</span></div>
+          </div>
+          <div class="experience-back">
+            <span>Work done</span>
+            <h3>Amazon impact</h3>
+            <ul>
+              <li>Analyzed shipment movement patterns, operational queues, and issue trends to support faster resolution.</li>
+              <li>Coordinated with stakeholders to reduce friction in transportation workflows and improve daily execution.</li>
+              <li>Built a strong operational foundation that later shaped her product, data, and automation thinking.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-card reveal wiz-card">
+          <div class="experience-copy">
+            <div class="experience-topline">
+              <span>May 2022 — Jan 2023</span>
+              <button class="experience-more" type="button">Know more ↗</button>
+            </div>
+            <div class="company-row">
+              <div class="company-logo wiz-logo">Radar</div>
+              <div>
+                <p class="company-name">WIZ</p>
+                <p class="company-meta">9 months · Chennai, Tamil Nadu, India · On-site</p>
+              </div>
+            </div>
+            <h3>Software Development Engineer - 1</h3>
+            <p>Built logistics product features and backend workflows while moving from internship into full-time engineering ownership.</p>
+            <div class="role-timeline">
+              <div>
+                <strong>SDE-1</strong>
+                <small>Jul 2022 — Jan 2023 · Full-time</small>
+                <em>Backend features · APIs · dashboards · logistics workflows</em>
+              </div>
+              <div>
+                <strong>Intern</strong>
+                <small>May 2022 — Jun 2022 · Internship</small>
+                <em>Product onboarding · engineering delivery support</em>
+              </div>
+            </div>
+            <div class="experience-details">
+              <ul>
+                <li>Contributed to backend functionality, data workflows, integrations, and reporting surfaces for logistics operations.</li>
+                <li>Partnered with product and operations teams to understand domain needs and ship practical product improvements.</li>
+                <li>Built early hands-on experience in production engineering, debugging, and release-oriented delivery.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="experience-visual">
+            <div class="org-shot wiz-shot"><strong>WIZ Radar</strong><span>logistics tech · shipping workflows · product engineering</span></div>
+          </div>
+          <div class="experience-back">
+            <span>Work done</span>
+            <h3>WIZ impact</h3>
+            <ul>
+              <li>Contributed to backend functionality, data workflows, integrations, and reporting surfaces for logistics operations.</li>
+              <li>Partnered with product and operations teams to understand domain needs and ship practical product improvements.</li>
+              <li>Built early hands-on experience in production engineering, debugging, and release-oriented delivery.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="experience-card reveal highradius-card">
+          <div class="experience-copy">
+            <div class="experience-topline">
+              <span>Jun 2021 — May 2022</span>
+              <button class="experience-more" type="button">Know more ↗</button>
+            </div>
+            <div class="company-row">
+              <div class="company-logo highradius-logo"></div>
+              <div>
+                <p class="company-name">HighRadius</p>
+                <p class="company-meta">Internship · Remote</p>
+              </div>
+            </div>
+            <h3>Product Expert</h3>
+            <p>Worked on enterprise SaaS product learning, client workflows, receivables processes, and functional delivery foundations.</p>
+            <div class="role-timeline">
+              <div>
+                <strong>Product Expert</strong>
+                <small>Sep 2021 — May 2022 · 9 months</small>
+                <em>Receivables workflows · product expertise · customer context</em>
+              </div>
+              <div>
+                <strong>Summer Internship</strong>
+                <small>Jun 2021 — Jul 2021 · 2 months</small>
+                <em>SaaS product learning · business process fundamentals</em>
+              </div>
+            </div>
+            <div class="experience-details">
+              <ul>
+                <li>Developed a functional understanding of enterprise SaaS workflows, client needs, and product configuration thinking.</li>
+                <li>Learned order-to-cash and receivables domain concepts that strengthened her business-product foundation.</li>
+                <li>Built confidence working with structured product requirements and enterprise delivery language.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="experience-visual">
+            <div class="org-shot highradius-shot"><strong>HighRadius</strong><span>enterprise SaaS · receivables · product expertise</span></div>
+          </div>
+          <div class="experience-back">
+            <span>Work done</span>
+            <h3>HighRadius impact</h3>
+            <ul>
+              <li>Developed a functional understanding of enterprise SaaS workflows, client needs, and product configuration thinking.</li>
+              <li>Learned order-to-cash and receivables domain concepts that strengthened her business-product foundation.</li>
+              <li>Built confidence working with structured product requirements and enterprise delivery language.</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -351,10 +557,11 @@ return safe_response(answer)</code></pre>
       </div>
     </section>
   </main>
-  <footer>
-    <p>Designed with heart ❤️ by Shreya Ranjan.</p>
+  <footer class="site-footer">
+    <a class="footer-mark" href="#home" aria-label="Back to top">SR<span>/</span></a>
+    <p>Designed with ❤️ by Shreya Ranjan.</p>
     <p class="footer-stack">Built with <a href="https://openai.com/codex/" target="_blank" rel="noreferrer">Codex</a> · Deployed on <a href="https://vercel.com/" target="_blank" rel="noreferrer">Vercel</a>.</p>
-    <p>2026 · Hyderabad, India</p>
+    <p class="footer-place">2026 · Hyderabad, India</p>
     <a class="back-top" href="#home">Back to top ↑</a>
   </footer>
 </body>
