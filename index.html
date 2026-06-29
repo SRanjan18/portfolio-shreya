@@ -12,14 +12,25 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="boot" aria-live="polite">
-    <div class="boot-grid"></div>
-    <div class="boot-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="boot-core">
-      <span>AI PORTFOLIO INIT</span>
-      <strong>Training Shreya’s agent</strong>
-      <div class="boot-bar"><i></i></div>
-      <p><b>01</b> indexing experience · <b>02</b> grounding projects · <b>03</b> activating neural UI</p>
+  <div class="loader" aria-live="polite" aria-label="Loading Shreya Ranjan portfolio">
+    <div class="loader-curtain"></div>
+    <div class="loader-stage" aria-hidden="true">
+      <div class="loader-rope left"></div>
+      <div class="loader-rope right"></div>
+      <div class="play-spark spark-one">✦</div>
+      <div class="play-spark spark-two">✧</div>
+      <div class="loader-bot bot-left">
+        <span class="bot-trail"><i></i><i></i><i></i></span>
+        <span class="bot-antenna"></span>
+        <span class="bot-face"><i></i><i></i><b></b></span>
+        <span class="bot-body"><i></i><i></i><i></i></span>
+      </div>
+      <div class="loader-bot bot-right">
+        <span class="bot-trail"><i></i><i></i><i></i></span>
+        <span class="bot-antenna"></span>
+        <span class="bot-face"><i></i><i></i><b></b></span>
+        <span class="bot-body"><i></i><i></i><i></i></span>
+      </div>
     </div>
   </div>
 
@@ -34,6 +45,7 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Stack</a>
+      <a href="#credentials">Credentials</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-actions" aria-label="Portfolio controls">
@@ -553,7 +565,7 @@ return safe_response(answer)</code></pre>
       </div>
     </section>
 
-    <section class="section credentials">
+    <section id="credentials" class="section credentials">
       <div class="section-head reveal">
         <p class="eyebrow">Credentials</p>
         <h2>Recognition and learning.</h2>

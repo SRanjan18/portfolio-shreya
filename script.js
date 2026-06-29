@@ -9,6 +9,7 @@ const ticker = document.querySelector(".ticker div");
 const themeToggle = document.querySelector(".theme-toggle");
 const musicToggle = document.querySelector(".music-toggle");
 const musicSymbol = document.querySelector(".music-symbol");
+const loader = document.querySelector(".loader");
 
 let width = 0;
 let height = 0;
@@ -29,6 +30,22 @@ if (savedTheme === "light") {
     themeToggle.setAttribute("aria-label", "Switch to dark theme");
   }
 }
+
+(function runLoaderSequence() {
+  if (!loader) return;
+  setTimeout(() => {
+    loader.classList.add("is-running");
+    setTimeout(() => {
+      loader.classList.add("is-pulling");
+      setTimeout(() => {
+        loader.classList.add("is-leaving");
+        setTimeout(() => {
+          loader.remove();
+        }, 950);
+      }, 1250);
+    }, 720);
+  }, 1500);
+})();
 
 function playNote(frequency, when, duration = .16) {
   if (!audioCtx) return;
