@@ -12,19 +12,18 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="loader hybrid-loader" aria-live="polite" aria-label="Loading Shreya Ranjan portfolio">
+  <div class="loader synapse-loader" aria-live="polite" aria-label="Loading Shreya Ranjan portfolio">
     <button class="skip-loader" type="button" aria-label="Skip portfolio intro">[ ESC ] Skip Intro</button>
-    <div class="neural-core-loader" aria-hidden="true">
-      <div class="core-orbit orbit-a"></div>
-      <div class="core-orbit orbit-b"></div>
-      <div class="core-node"><i></i><i></i><i></i><span></span></div>
-      <div class="boot-lines">
-        <p>[SYS] Mapping vector spaces...</p>
-        <p>[LLM] Connecting orchestration layers...</p>
-        <p>[RAG] Indexing grounded retrieval paths...</p>
-        <p>[READY] Launching Shreya Ranjan Portfolio v2.0...</p>
-      </div>
-      <div class="loader-progress"><i></i></div>
+    <canvas id="synapse-loader-canvas" aria-hidden="true"></canvas>
+    <div class="synapse-core" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="synapse-loader-copy" aria-hidden="true">
+      <p data-loader-line>[SYS] Mapping neural vector spaces...</p>
+      <p data-loader-line>[LLM] Synchronizing orchestration layers...</p>
+      <p data-loader-line>[RAG] Firing grounded retrieval pathways...</p>
+      <p data-loader-line>[READY] Synapse burst armed...</p>
+      <div class="synapse-progress"><i></i></div>
     </div>
   </div>
 
