@@ -40,6 +40,7 @@ let pipelinePulses = [];
 let pipelineHover = -1;
 let pipelinePointer = { x: 0, y: 0, active: false };
 let pipelineImpacts = [0, 0, 0];
+const canvasDpr = () => Math.min(window.devicePixelRatio || 1, 1.35);
 const bypassPhrases = [
   "[ ESC TO BYPASS ↗ ]",
   "[ SKIP LOG STREAM ↗ ]",
@@ -234,17 +235,17 @@ function wrapCanvasText(context, text, x, y, maxWidth, lineHeight) {
   lines.forEach((item, index) => context.fillText(item, x, startY + index * lineHeight));
 }
 
-function drawPythonIcon(context, x, y, r, impact = 0) {
+function drawPythonIcon(context, x, y, r, impact = 0, light = false) {
   const breath = 1 + Math.sin(time * 1.5) * .04 + impact * .08;
   context.save();
   context.translate(x, y);
   context.scale(breath, breath);
-  context.shadowColor = "#4df3ff";
-  context.shadowBlur = 18 + impact * 36;
-  context.fillStyle = "#3572a5";
+  context.shadowColor = light ? "transparent" : "#4df3ff";
+  context.shadowBlur = light ? 0 : 18 + impact * 36;
+  context.fillStyle = light ? "#0d9488" : "#3572a5";
   roundRect(context, -r * .78, -r * .58, r * 1.2, r * .78, r * .22);
   context.fill();
-  context.fillStyle = "#ffe873";
+  context.fillStyle = light ? "#0284c7" : "#ffe873";
   roundRect(context, -r * .42, -r * .08, r * 1.2, r * .78, r * .22);
   context.fill();
   context.fillStyle = "#f8fbff";
@@ -252,7 +253,7 @@ function drawPythonIcon(context, x, y, r, impact = 0) {
   context.arc(-r * .36, -r * .34, r * .055, 0, Math.PI * 2);
   context.arc(r * .34, r * .34, r * .055, 0, Math.PI * 2);
   context.fill();
-  context.strokeStyle = `rgba(255,255,255,${.35 + impact * .4})`;
+  context.strokeStyle = light ? `rgba(15,23,42,${.4 + impact * .22})` : `rgba(255,255,255,${.35 + impact * .4})`;
   context.lineWidth = 1.5;
   context.beginPath();
   context.moveTo(-r * .05, -r * .56);
@@ -263,20 +264,20 @@ function drawPythonIcon(context, x, y, r, impact = 0) {
   context.restore();
 }
 
-function drawNeuralCoreIcon(context, x, y, r, impact = 0) {
+function drawNeuralCoreIcon(context, x, y, r, impact = 0, light = false) {
   context.save();
   context.translate(x, y);
   const glow = context.createRadialGradient(0, 0, 0, 0, 0, r * 1.9);
-  glow.addColorStop(0, `rgba(204,255,66,${.38 + impact * .45})`);
-  glow.addColorStop(.45, "rgba(77,243,255,.18)");
-  glow.addColorStop(1, "rgba(204,255,66,0)");
+  glow.addColorStop(0, light ? `rgba(132,204,22,${.6 + impact * .2})` : `rgba(204,255,66,${.38 + impact * .45})`);
+  glow.addColorStop(.45, light ? "rgba(13,148,136,.18)" : "rgba(77,243,255,.18)");
+  glow.addColorStop(1, light ? "rgba(255,255,255,0)" : "rgba(204,255,66,0)");
   context.fillStyle = glow;
   context.beginPath();
   context.arc(0, 0, r * 1.9, 0, Math.PI * 2);
   context.fill();
 
   const dots = 8;
-  context.strokeStyle = `rgba(204,255,66,${.34 + impact * .35})`;
+  context.strokeStyle = light ? `rgba(13,148,136,${.48 + impact * .2})` : `rgba(204,255,66,${.34 + impact * .35})`;
   context.lineWidth = 1.1;
   for (let i = 0; i < dots; i++) {
     const angle = time * .75 + i * (Math.PI * 2 / dots);
@@ -288,9 +289,9 @@ function drawNeuralCoreIcon(context, x, y, r, impact = 0) {
     context.stroke();
   }
 
-  context.fillStyle = "#ccff42";
-  context.shadowColor = "#ccff42";
-  context.shadowBlur = 24 + impact * 38;
+  context.fillStyle = light ? "#0d9488" : "#ccff42";
+  context.shadowColor = light ? "transparent" : "#ccff42";
+  context.shadowBlur = light ? 0 : 24 + impact * 38;
   context.beginPath();
   context.arc(0, 0, r * .28 + impact * 4, 0, Math.PI * 2);
   context.fill();
@@ -299,7 +300,7 @@ function drawNeuralCoreIcon(context, x, y, r, impact = 0) {
     const angle = -time * 1.35 + i * (Math.PI * 2 / dots);
     const px = Math.cos(angle) * r * .72;
     const py = Math.sin(angle * 1.15) * r * .48;
-    context.fillStyle = i % 2 ? "#4df3ff" : "#ccff42";
+    context.fillStyle = light ? (i % 2 ? "#0284c7" : "#0d9488") : (i % 2 ? "#4df3ff" : "#ccff42");
     context.beginPath();
     context.arc(px, py, r * (.065 + (Math.sin(time * 4 + i) + 1) * .015), 0, Math.PI * 2);
     context.fill();
@@ -307,13 +308,13 @@ function drawNeuralCoreIcon(context, x, y, r, impact = 0) {
   context.restore();
 }
 
-function drawReactIcon(context, x, y, r, impact = 0) {
+function drawReactIcon(context, x, y, r, impact = 0, light = false) {
   context.save();
   context.translate(x, y);
-  context.strokeStyle = "#61dafb";
+  context.strokeStyle = light ? "#0284c7" : "#61dafb";
   context.lineWidth = 2.4;
-  context.shadowColor = "#61dafb";
-  context.shadowBlur = 20 + impact * 42;
+  context.shadowColor = light ? "transparent" : "#61dafb";
+  context.shadowBlur = light ? 0 : 20 + impact * 42;
   const spin = time * (1.2 + impact * 4);
   for (let i = 0; i < 3; i++) {
     context.save();
@@ -323,7 +324,7 @@ function drawReactIcon(context, x, y, r, impact = 0) {
     context.stroke();
     context.restore();
   }
-  context.fillStyle = "#61dafb";
+  context.fillStyle = light ? "#0d9488" : "#61dafb";
   context.beginPath();
   context.arc(0, 0, r * .14 + impact * 2, 0, Math.PI * 2);
   context.fill();
@@ -358,7 +359,9 @@ function drawPipeline() {
   pipelineCtx.fill();
 
   pipelineCtx.globalAlpha = light ? .16 : .22;
-  pipelineCtx.strokeStyle = light ? "rgba(71,85,105,.12)" : "rgba(0,191,255,.15)";
+  pipelineCtx.strokeStyle = light ? "rgba(13,148,136,.2)" : "rgba(0,191,255,.15)";
+  pipelineCtx.shadowColor = "transparent";
+  pipelineCtx.shadowBlur = 0;
   pipelineCtx.lineWidth = .5;
   for (let x = 34; x < w; x += 34) {
     pipelineCtx.beginPath();
@@ -382,9 +385,15 @@ function drawPipeline() {
 
   paths.forEach((path, index) => {
     const gradient = pipelineCtx.createLinearGradient(path.a.px, path.a.py, path.c.px, path.c.py);
-    gradient.addColorStop(0, `${path.a.color}aa`);
-    gradient.addColorStop(.5, index === 2 ? "#ffffff55" : "#ccff4288");
-    gradient.addColorStop(1, `${path.c.color}aa`);
+    if (light) {
+      gradient.addColorStop(0, "rgba(51,65,85,.34)");
+      gradient.addColorStop(.5, index === 2 ? "rgba(15,23,42,.24)" : "rgba(13,148,136,.32)");
+      gradient.addColorStop(1, "rgba(51,65,85,.34)");
+    } else {
+      gradient.addColorStop(0, `${path.a.color}aa`);
+      gradient.addColorStop(.5, index === 2 ? "#ffffff55" : "#ccff4288");
+      gradient.addColorStop(1, `${path.c.color}aa`);
+    }
     pipelineCtx.strokeStyle = gradient;
     pipelineCtx.lineWidth = index === 2 ? 1.25 : 2.2;
     pipelineCtx.setLineDash(index === 2 ? [7, 12] : [10, 14]);
@@ -412,7 +421,7 @@ function drawPipeline() {
     }
     const point = bezierPoint({ x: path.a.px, y: path.a.py }, path.b, { x: path.c.px, y: path.c.py }, packet.progress);
     const tailPoint = bezierPoint({ x: path.a.px, y: path.a.py }, path.b, { x: path.c.px, y: path.c.py }, Math.max(0, packet.progress - .045));
-    const color = packet.hue === 0 ? "#4df3ff" : packet.hue === 1 ? "#ccff42" : "#9d6cff";
+    const color = light ? (packet.hue === 0 ? "#0d9488" : packet.hue === 1 ? "#0284c7" : "#14b8a6") : (packet.hue === 0 ? "#4df3ff" : packet.hue === 1 ? "#ccff42" : "#9d6cff");
     const comet = pipelineCtx.createLinearGradient(tailPoint.x, tailPoint.y, point.x, point.y);
     comet.addColorStop(0, `${color}00`);
     comet.addColorStop(.55, `${color}88`);
@@ -420,8 +429,8 @@ function drawPipeline() {
     pipelineCtx.strokeStyle = comet;
     pipelineCtx.lineWidth = packet.size * 1.65;
     pipelineCtx.lineCap = "round";
-    pipelineCtx.shadowColor = color;
-    pipelineCtx.shadowBlur = 18;
+    pipelineCtx.shadowColor = light ? "transparent" : color;
+    pipelineCtx.shadowBlur = light ? 0 : 18;
     pipelineCtx.beginPath();
     pipelineCtx.moveTo(tailPoint.x, tailPoint.y);
     pipelineCtx.lineTo(point.x, point.y);
@@ -437,7 +446,11 @@ function drawPipeline() {
   for (const pulse of pipelinePulses) {
     const age = (Date.now() - pulse.t) / 900;
     const node = nodes[pulse.node];
-    pipelineCtx.strokeStyle = `${node.color}${Math.floor((1 - age) * 180).toString(16).padStart(2, "0")}`;
+    pipelineCtx.shadowColor = "transparent";
+    pipelineCtx.shadowBlur = 0;
+    pipelineCtx.strokeStyle = light
+      ? `rgba(13,148,136,${(1 - age) * .42})`
+      : `${node.color}${Math.floor((1 - age) * 180).toString(16).padStart(2, "0")}`;
     pipelineCtx.lineWidth = 2 + age * 7;
     pipelineCtx.beginPath();
     pipelineCtx.arc(node.px, node.py, node.r + age * 150, 0, Math.PI * 2);
@@ -449,17 +462,25 @@ function drawPipeline() {
     pipelineImpacts[index] *= .9;
     const impact = Math.max(pipelineImpacts[index], hovered ? .32 : 0);
     const glow = pipelineCtx.createRadialGradient(node.px, node.py, 0, node.px, node.py, node.r * 2.6);
-    glow.addColorStop(0, `${node.color}${impact > .4 ? "dd" : hovered ? "bb" : "66"}`);
-    glow.addColorStop(.42, `${node.color}22`);
-    glow.addColorStop(1, `${node.color}00`);
+    if (light) {
+      glow.addColorStop(0, `rgba(132,204,22,${.34 + impact * .34})`);
+      glow.addColorStop(.48, "rgba(13,148,136,.14)");
+      glow.addColorStop(1, "rgba(255,255,255,0)");
+    } else {
+      glow.addColorStop(0, `${node.color}${impact > .4 ? "dd" : hovered ? "bb" : "66"}`);
+      glow.addColorStop(.42, `${node.color}22`);
+      glow.addColorStop(1, `${node.color}00`);
+    }
     pipelineCtx.fillStyle = glow;
+    pipelineCtx.shadowColor = "transparent";
+    pipelineCtx.shadowBlur = 0;
     pipelineCtx.beginPath();
     pipelineCtx.arc(node.px, node.py, node.r * 2.6, 0, Math.PI * 2);
     pipelineCtx.fill();
 
-    if (index === 0) drawPythonIcon(pipelineCtx, node.px, node.py, node.r, impact);
-    if (index === 1) drawNeuralCoreIcon(pipelineCtx, node.px, node.py, node.r, impact);
-    if (index === 2) drawReactIcon(pipelineCtx, node.px, node.py, node.r, impact);
+    if (index === 0) drawPythonIcon(pipelineCtx, node.px, node.py, node.r, impact, light);
+    if (index === 1) drawNeuralCoreIcon(pipelineCtx, node.px, node.py, node.r, impact, light);
+    if (index === 2) drawReactIcon(pipelineCtx, node.px, node.py, node.r, impact, light);
 
     if (hovered) {
       const tooltipY = Math.min(h - 52, node.py + node.r * 1.22);
@@ -549,33 +570,34 @@ function startMusic() {
 }
 
 function resize() {
-  width = innerWidth * devicePixelRatio;
-  height = innerHeight * devicePixelRatio;
+  const dpr = canvasDpr();
+  width = innerWidth * dpr;
+  height = innerHeight * dpr;
   if (canvas && ctx) {
     canvas.width = width;
     canvas.height = height;
     canvas.style.width = innerWidth + "px";
     canvas.style.height = innerHeight + "px";
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  trailCanvas.width = innerWidth * devicePixelRatio;
-  trailCanvas.height = innerHeight * devicePixelRatio;
+  trailCanvas.width = innerWidth * dpr;
+  trailCanvas.height = innerHeight * dpr;
   trailCanvas.style.width = innerWidth + "px";
   trailCanvas.style.height = innerHeight + "px";
-  trailCtx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  trailCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
   if (loaderCanvas && loaderCtx) {
     loaderCanvas.width = width;
     loaderCanvas.height = height;
     loaderCanvas.style.width = innerWidth + "px";
     loaderCanvas.style.height = innerHeight + "px";
-    loaderCtx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    loaderCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     initMatrixPoints();
   }
   if (pipelineCanvas && pipelineCtx) {
     const rect = pipelineCanvas.getBoundingClientRect();
-    pipelineCanvas.width = Math.max(1, rect.width * devicePixelRatio);
-    pipelineCanvas.height = Math.max(1, rect.height * devicePixelRatio);
-    pipelineCtx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    pipelineCanvas.width = Math.max(1, rect.width * dpr);
+    pipelineCanvas.height = Math.max(1, rect.height * dpr);
+    pipelineCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     initPipelinePackets();
   }
   initInteractiveBackground();
@@ -596,7 +618,7 @@ function initPipelinePackets() {
 }
 
 function initInteractiveBackground() {
-  const pointCount = Math.min(150, Math.max(120, Math.floor((innerWidth * innerHeight) / 14500)));
+  const pointCount = Math.min(220, Math.max(180, Math.floor((innerWidth * innerHeight) / 9000)));
   backgroundPoints = Array.from({ length: pointCount }, () => ({
     x: Math.random() * innerWidth,
     y: Math.random() * innerHeight,
@@ -626,21 +648,13 @@ function drawInteractiveBackground() {
   if (!canvas || !ctx) return;
   const light = document.body.classList.contains("light-theme");
   ctx.clearRect(0, 0, innerWidth, innerHeight);
-  if (light) {
-    const lightBg = ctx.createLinearGradient(0, 0, innerWidth, innerHeight);
-    lightBg.addColorStop(0, "#ffffff");
-    lightBg.addColorStop(.58, "#f8fafc");
-    lightBg.addColorStop(1, "#f1f5f9");
-    ctx.fillStyle = lightBg;
-  } else {
-    ctx.fillStyle = "#030303";
-  }
+  ctx.fillStyle = light ? "#ffffff" : "#020203";
   ctx.fillRect(0, 0, innerWidth, innerHeight);
 
   const baseLine = light ? [13, 148, 136] : [0, 240, 255];
-  const accentLine = light ? [20, 184, 166] : [0, 255, 170];
-  const violetLine = light ? [14, 116, 144] : [157, 108, 255];
-  const tokenColor = light ? "rgba(13, 148, 136, .16)" : "rgba(224, 255, 250, .2)";
+  const accentLine = light ? [2, 132, 199] : [0, 255, 170];
+  const violetLine = light ? [13, 148, 136] : [168, 85, 247];
+  const tokenColor = light ? "rgba(13, 148, 136, .12)" : "rgba(224, 255, 250, .22)";
 
   for (const point of backgroundPoints) {
     const dx = point.x - mouse.x;
@@ -661,26 +675,44 @@ function drawInteractiveBackground() {
     if (point.y > innerHeight + 24) point.y = -24;
   }
 
+  const proximity = 150;
+  const cellSize = proximity;
+  const grid = new Map();
   for (let i = 0; i < backgroundPoints.length; i++) {
-    const a = backgroundPoints[i];
-    for (let j = i + 1; j < backgroundPoints.length; j++) {
-      const b = backgroundPoints[j];
-      const distance = Math.hypot(a.x - b.x, a.y - b.y);
-      if (distance > 165) continue;
-      const midX = (a.x + b.x) / 2;
-      const midY = (a.y + b.y) / 2;
-      const mouseDistance = Math.hypot(midX - mouse.x, midY - mouse.y);
-      const pulse = Math.max(0, 1 - mouseDistance / 200);
-      const opacity = (1 - distance / 165) * (light ? .4 : .25) + pulse * (light ? .18 : .24);
-      const color = i % 7 === 0 ? violetLine : i % 4 === 0 ? accentLine : baseLine;
-      ctx.strokeStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${opacity})`;
-      ctx.shadowColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${pulse * (light ? .16 : .52)})`;
-      ctx.shadowBlur = pulse * 12;
-      ctx.lineWidth = .75 + pulse * .34;
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.stroke();
+    const point = backgroundPoints[i];
+    point.index = i;
+    point.cellX = Math.floor(point.x / cellSize);
+    point.cellY = Math.floor(point.y / cellSize);
+    const key = `${point.cellX}:${point.cellY}`;
+    if (!grid.has(key)) grid.set(key, []);
+    grid.get(key).push(point);
+  }
+
+  for (const a of backgroundPoints) {
+    for (let ox = -1; ox <= 1; ox++) {
+      for (let oy = -1; oy <= 1; oy++) {
+        const candidates = grid.get(`${a.cellX + ox}:${a.cellY + oy}`);
+        if (!candidates) continue;
+        for (const b of candidates) {
+          if (b.index <= a.index) continue;
+          const distance = Math.hypot(a.x - b.x, a.y - b.y);
+          if (distance > proximity) continue;
+          const midX = (a.x + b.x) / 2;
+          const midY = (a.y + b.y) / 2;
+          const mouseDistance = Math.hypot(midX - mouse.x, midY - mouse.y);
+          const pulse = Math.max(0, 1 - mouseDistance / 200);
+          const opacity = (1 - distance / proximity) * (light ? .24 : .35) + pulse * (light ? .14 : .28);
+          const color = a.index % 7 === 0 ? violetLine : a.index % 4 === 0 ? accentLine : baseLine;
+          ctx.strokeStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${opacity})`;
+          ctx.shadowColor = light ? "transparent" : `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${.26 + pulse * .5})`;
+          ctx.shadowBlur = light ? 0 : (pulse > .08 ? 7 + pulse * 7 : 0);
+          ctx.lineWidth = (light ? .75 : .92) + pulse * .38;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
     }
   }
   ctx.globalAlpha = 1;
@@ -691,10 +723,10 @@ function drawInteractiveBackground() {
     const distance = Math.hypot(point.x - mouse.x, point.y - mouse.y);
     const pulse = Math.max(0, 1 - distance / 200);
     const color = i % 9 === 0 ? violetLine : i % 5 === 0 ? accentLine : baseLine;
-    const opacity = (light ? .34 : .42) + pulse * (light ? .28 : .48);
+    const opacity = (light ? .62 : .68) + pulse * (light ? .24 : .32);
     ctx.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${opacity})`;
-    ctx.shadowColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${pulse * .55})`;
-    ctx.shadowBlur = pulse * 12;
+    ctx.shadowColor = light ? "transparent" : (i % 9 === 0 ? "#a855f7" : "#00f0ff");
+    ctx.shadowBlur = light ? 0 : (pulse > .12 || i % 5 === 0 ? 7 + pulse * 7 : 0);
     ctx.beginPath();
     if (i % 7 === 0) {
       ctx.rect(point.x - point.radius, point.y - point.radius, point.radius * 2, point.radius * 2);
@@ -708,7 +740,7 @@ function drawInteractiveBackground() {
   ctx.save();
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.globalAlpha = light ? .16 : .2;
+  ctx.globalAlpha = light ? .12 : .22;
   for (const artifact of backgroundTokens) {
     artifact.x += artifact.vx + Math.sin(time * .28 + artifact.rotate) * .05;
     artifact.y += artifact.vy + Math.cos(time * .24 + artifact.rotate) * .05;
@@ -722,17 +754,19 @@ function drawInteractiveBackground() {
     ctx.translate(artifact.x, artifact.y);
     ctx.rotate(Math.sin(artifact.rotate) * .14);
     ctx.fillStyle = tokenColor;
-    ctx.strokeStyle = light ? "rgba(13, 148, 136, .55)" : "rgba(0, 240, 255, .8)";
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = light ? "rgba(13, 148, 136, .5)" : "rgba(0, 240, 255, .8)";
     ctx.lineWidth = 1.4;
     if (artifact.type === "code") {
       ctx.font = "800 14px JetBrains Mono, monospace";
       ctx.fillText(artifact.label, 0, 0);
     } else if (artifact.type === "python") {
-      drawPythonIcon(ctx, 0, 0, 20 * artifact.size, 0);
+      drawPythonIcon(ctx, 0, 0, 20 * artifact.size, 0, light);
     } else if (artifact.type === "react") {
-      drawReactIcon(ctx, 0, 0, 22 * artifact.size, 0);
+      drawReactIcon(ctx, 0, 0, 22 * artifact.size, 0, light);
     } else {
-      drawNeuralCoreIcon(ctx, 0, 0, 20 * artifact.size, 0);
+      drawNeuralCoreIcon(ctx, 0, 0, 20 * artifact.size, 0, light);
     }
     ctx.restore();
   }
