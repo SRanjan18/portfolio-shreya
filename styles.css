@@ -373,6 +373,202 @@ body::after { display: none; }
 @keyframes spark-bounce { to { transform: translateY(-24px) rotate(22deg) scale(1.12); } }
 @keyframes wave-flow { to { background-position: 520px 0, -460px 0; } }
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+#about { order: 1; }
+#experience { order: 2; }
+#architectures { order: 3; }
+#projects { order: 4; }
+.earlier-projects { order: 5; }
+#skills { order: 6; }
+#credentials { order: 7; }
+#contact { order: 8; }
+
+body:not(.intro-ready) .header,
+body:not(.intro-ready) #about .hero-copy,
+body:not(.intro-ready) #about .hero-lab {
+  opacity: 0;
+  transform: translateY(18px);
+}
+body.intro-ready .header,
+body.intro-ready #about .hero-copy,
+body.intro-ready #about .hero-lab {
+  animation: intro-stagger .72s cubic-bezier(.2,.85,.2,1) forwards;
+}
+body.intro-ready #about .hero-lab { animation-delay: .12s; }
+@keyframes intro-stagger {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hybrid-loader {
+  background: #050505;
+  transition: opacity .56s ease, visibility .56s ease;
+}
+.hybrid-loader::before {
+  opacity: .18;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(77,243,255,.14), transparent 30%),
+    linear-gradient(rgba(77,243,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(141,113,255,.05) 1px, transparent 1px);
+  background-size: auto, 58px 58px, 58px 58px;
+  animation: loader-grid-drift 2.8s linear infinite;
+}
+.neural-core-loader {
+  position: relative;
+  z-index: 4;
+  width: min(560px, calc(100vw - 40px));
+  min-height: 390px;
+  display: grid;
+  place-items: center;
+  color: #c8ff42;
+  font-family: "JetBrains Mono", monospace;
+}
+.core-node {
+  position: relative;
+  width: 126px;
+  height: 126px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(77,243,255,.28);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(200,255,66,.95) 0 14%, rgba(77,243,255,.75) 15% 34%, rgba(141,113,255,.18) 35% 100%);
+  box-shadow: 0 0 42px rgba(77,243,255,.38), inset 0 0 34px rgba(5,5,5,.42);
+  animation: core-pulse 1.1s ease-in-out infinite alternate;
+}
+.core-node::before,
+.core-node::after,
+.core-node span {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border: 1px solid rgba(77,243,255,.3);
+  border-radius: 50%;
+  animation: core-ring 1.7s linear infinite;
+}
+.core-node::after { inset: -44px; border-color: rgba(141,113,255,.28); animation-duration: 2.1s; animation-direction: reverse; }
+.core-node span { inset: -68px; border-color: rgba(200,255,66,.18); animation-duration: 2.7s; }
+.core-node i {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #eaffff;
+  box-shadow: 0 0 18px rgba(77,243,255,.9);
+}
+.core-node i:nth-child(1) { transform: translate(-58px, -18px); }
+.core-node i:nth-child(2) { transform: translate(44px, -44px); }
+.core-node i:nth-child(3) { transform: translate(38px, 50px); }
+.core-orbit {
+  position: absolute;
+  width: 240px;
+  height: 100px;
+  border: 1px solid rgba(77,243,255,.18);
+  border-radius: 50%;
+  animation: orbit-spin 2.8s linear infinite;
+}
+.orbit-b {
+  width: 300px;
+  height: 130px;
+  border-color: rgba(255,91,216,.18);
+  animation-duration: 3.5s;
+  animation-direction: reverse;
+  transform: rotate(62deg);
+}
+.boot-lines {
+  position: absolute;
+  top: calc(50% + 118px);
+  left: 50%;
+  width: min(620px, calc(100vw - 48px));
+  transform: translateX(-50%);
+  display: grid;
+  gap: 8px;
+  color: rgba(220,244,255,.76);
+  font-size: clamp(.68rem, 1.7vw, .86rem);
+  line-height: 1.5;
+  text-align: left;
+}
+.boot-lines p {
+  margin: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: boot-line .32s ease forwards;
+}
+.boot-lines p:nth-child(1) { animation-delay: .18s; }
+.boot-lines p:nth-child(2) { animation-delay: .72s; }
+.boot-lines p:nth-child(3) { animation-delay: 1.26s; }
+.boot-lines p:nth-child(4) { animation-delay: 1.92s; color: #c8ff42; }
+.loader-progress {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  width: min(430px, 76vw);
+  height: 3px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  background: rgba(255,255,255,.1);
+  border-radius: 999px;
+}
+.loader-progress i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #4df3ff, #8d71ff, #c8ff42);
+  box-shadow: 0 0 26px rgba(77,243,255,.64);
+  animation: loader-fill 2.55s cubic-bezier(.28,.9,.24,1) forwards;
+}
+.hybrid-loader::after {
+  content: "";
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%) scale(0);
+  border: 2px solid rgba(77,243,255,.88);
+  border-radius: 50%;
+  box-shadow: 0 0 70px rgba(77,243,255,.42), inset 0 0 50px rgba(141,113,255,.24);
+  opacity: 0;
+  pointer-events: none;
+}
+.hybrid-loader.is-blasting::after {
+  animation: data-ripple .72s cubic-bezier(.13,.9,.2,1) forwards;
+}
+.skip-loader {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 8;
+  padding: 10px 14px;
+  color: rgba(245,247,255,.76);
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  font: 800 .75rem/1 "JetBrains Mono", monospace;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+.skip-loader:hover {
+  color: #fff;
+  background: rgba(77,243,255,.1);
+  border-color: rgba(77,243,255,.34);
+  transform: translateY(-1px);
+}
+@keyframes loader-grid-drift { to { background-position: 0 0, 58px 58px, -58px 58px; } }
+@keyframes core-pulse { to { transform: scale(1.04); filter: brightness(1.16); } }
+@keyframes core-ring { to { rotate: 360deg; } }
+@keyframes orbit-spin { to { rotate: 360deg; } }
+@keyframes boot-line { to { opacity: 1; transform: translateY(0); } }
+@keyframes loader-fill { to { width: 100%; } }
+@keyframes data-ripple {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(145); }
+}
+
 .header {
   position: sticky;
   top: 16px;

@@ -10,6 +10,7 @@ const themeToggle = document.querySelector(".theme-toggle");
 const musicToggle = document.querySelector(".music-toggle");
 const musicSymbol = document.querySelector(".music-symbol");
 const loader = document.querySelector(".loader");
+const skipLoader = document.querySelector(".skip-loader");
 
 let width = 0;
 let height = 0;
@@ -33,18 +34,28 @@ if (savedTheme === "light") {
 
 (function runLoaderSequence() {
   if (!loader) return;
-  setTimeout(() => {
-    loader.classList.add("is-running");
+  let closed = false;
+  const closeLoader = (blast = true) => {
+    if (closed) return;
+    closed = true;
+    if (blast) loader.classList.add("is-blasting");
+    document.body.classList.add("intro-ready");
     setTimeout(() => {
-      loader.classList.add("is-pulling");
-      setTimeout(() => {
-        loader.classList.add("is-leaving");
-        setTimeout(() => {
-          loader.remove();
-        }, 950);
-      }, 1250);
-    }, 720);
-  }, 1500);
+      loader.classList.add("is-leaving");
+      setTimeout(() => loader.remove(), 620);
+    }, blast ? 620 : 0);
+  };
+  const bootTimer = setTimeout(() => closeLoader(true), 2650);
+  skipLoader?.addEventListener("click", () => {
+    clearTimeout(bootTimer);
+    closeLoader(false);
+  });
+  addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      clearTimeout(bootTimer);
+      closeLoader(false);
+    }
+  });
 })();
 
 function playNote(frequency, when, duration = .16) {

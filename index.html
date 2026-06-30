@@ -12,33 +12,19 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="loader" aria-live="polite" aria-label="Loading Shreya Ranjan portfolio">
-    <div class="loader-curtain"></div>
-    <div class="loader-stage" aria-hidden="true">
-      <div class="loader-rope left"></div>
-      <div class="loader-rope right"></div>
-      <div class="play-spark spark-one">✦</div>
-      <div class="play-spark spark-two">✧</div>
-      <div class="loader-bot bot-left">
-        <span class="bot-trail"><i></i><i></i><i></i></span>
-        <span class="bot-antenna"></span>
-        <span class="bot-arm arm-left"></span>
-        <span class="bot-arm arm-right"></span>
-        <span class="bot-face"><i></i><i></i><b></b></span>
-        <span class="bot-body"><i></i><i></i><i></i></span>
-        <span class="bot-leg leg-left"></span>
-        <span class="bot-leg leg-right"></span>
+  <div class="loader hybrid-loader" aria-live="polite" aria-label="Loading Shreya Ranjan portfolio">
+    <button class="skip-loader" type="button" aria-label="Skip portfolio intro">[ ESC ] Skip Intro</button>
+    <div class="neural-core-loader" aria-hidden="true">
+      <div class="core-orbit orbit-a"></div>
+      <div class="core-orbit orbit-b"></div>
+      <div class="core-node"><i></i><i></i><i></i><span></span></div>
+      <div class="boot-lines">
+        <p>[SYS] Mapping vector spaces...</p>
+        <p>[LLM] Connecting orchestration layers...</p>
+        <p>[RAG] Indexing grounded retrieval paths...</p>
+        <p>[READY] Launching Shreya Ranjan Portfolio v2.0...</p>
       </div>
-      <div class="loader-bot bot-right">
-        <span class="bot-trail"><i></i><i></i><i></i></span>
-        <span class="bot-antenna"></span>
-        <span class="bot-arm arm-left"></span>
-        <span class="bot-arm arm-right"></span>
-        <span class="bot-face"><i></i><i></i><b></b></span>
-        <span class="bot-body"><i></i><i></i><i></i></span>
-        <span class="bot-leg leg-left"></span>
-        <span class="bot-leg leg-right"></span>
-      </div>
+      <div class="loader-progress"><i></i></div>
     </div>
   </div>
 
@@ -47,14 +33,13 @@
   <div class="ai-chaser" aria-hidden="true">✦</div>
 
   <header class="header">
-    <a class="brand" href="#home" aria-label="Shreya Ranjan home">Shreya<span>Ranjan</span></a>
+    <a class="brand" href="#about" aria-label="Shreya Ranjan home">Shreya<span>Ranjan</span></a>
     <nav>
-      <a href="#work">AI Work</a>
+      <a href="#about">About</a>
       <a href="#experience">Experience</a>
+      <a href="#architectures">Architectures</a>
       <a href="#projects">Projects</a>
-      <a href="#skills">Stack</a>
-      <a href="#credentials">Credentials</a>
-      <a href="#contact">Contact</a>
+      <a href="#skills">Skills</a>
     </nav>
     <div class="header-actions" aria-label="Portfolio controls">
       <button class="icon-btn music-toggle" type="button" aria-label="Play portfolio music">
@@ -67,11 +52,11 @@
   </header>
 
   <main>
-    <section id="home" class="hero section">
+    <section id="about" class="hero section">
       <div class="hero-copy reveal">
         <p class="eyebrow">AI Software Engineer · Generative AI Engineer</p>
         <p class="intro-line"><span>Hi, I’m Shreya Ranjan.</span></p>
-        <h1>Building AI systems that understand, retrieve, automate, and create.</h1>
+        <h1>Shreya Ranjan — Software Engineer & Generative AI Applications Developer</h1>
         <p class="hero-text">AI Software Engineer at Accenture with ~4 years of experience across enterprise applications, AI agents, RAG-style retrieval, document intelligence, and intelligent automation systems.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#projects">Explore AI projects</a>
@@ -117,10 +102,10 @@ return safe_response(answer)</code></pre>
       </div>
     </section>
 
-    <section id="work" class="section work">
+    <section id="architectures" class="section work">
       <div class="section-head reveal">
         <p class="eyebrow">Enterprise AI Work</p>
-        <h2>Applied AI, not just demos.</h2>
+        <h2>System Architectures & Intelligent Retrieval Pipelines</h2>
       </div>
       <div class="work-grid">
         <article class="work-card reveal">
@@ -168,8 +153,8 @@ return safe_response(answer)</code></pre>
 
     <section id="projects" class="section projects">
       <div class="section-head reveal">
-        <p class="eyebrow">Selected AI Projects</p>
-        <h2>AI apps with real product surfaces.</h2>
+        <p class="eyebrow">GenAI & Intelligent Systems</p>
+        <h2>Intelligent Applications & AI Orchestration</h2>
         <p class="section-note">Live demo links and exact project timelines can be added once the active deployment URLs and repository dates are confirmed.</p>
       </div>
       <div class="project-grid">
@@ -216,9 +201,9 @@ return safe_response(answer)</code></pre>
 
     <section class="section projects earlier-projects">
       <div class="section-head reveal">
-        <p class="eyebrow">Earlier / Academic Projects</p>
+        <p class="eyebrow">Software Engineering Foundations</p>
         <h2>Foundational Java and browser projects.</h2>
-        <p class="section-note">Kept separate from AI work so the portfolio reads as AI-first while still showing engineering fundamentals.</p>
+        <p class="section-note">A collection of foundational software engineering and interactive applications tracking my early development journey.</p>
       </div>
       <div class="project-grid compact-project-grid">
 
@@ -380,7 +365,7 @@ return safe_response(answer)</code></pre>
     <section id="experience" class="section experience">
       <div class="section-head reveal">
         <p class="eyebrow">Experience</p>
-        <h2>Software foundation, AI direction.</h2>
+        <h2>Enterprise AI Solutions & Production Workflows</h2>
       </div>
       <div class="timeline experience-stack">
         <article class="experience-card reveal accenture-card">
@@ -615,11 +600,11 @@ return safe_response(answer)</code></pre>
     </section>
   </main>
   <footer class="site-footer">
-    <a class="footer-mark" href="#home" aria-label="Back to top">SR<span>/</span></a>
+    <a class="footer-mark" href="#about" aria-label="Back to top">SR<span>/</span></a>
     <p>Designed with ❤️ by Shreya Ranjan.</p>
     <p class="footer-stack">Built with <a href="https://openai.com/codex/" target="_blank" rel="noreferrer">Codex</a> · Deployed on <a href="https://vercel.com/" target="_blank" rel="noreferrer">Vercel</a>.</p>
     <p class="footer-place">2026 · Hyderabad, India</p>
-    <a class="back-top" href="#home">Back to top ↑</a>
+    <a class="back-top" href="#about">Back to top ↑</a>
   </footer>
 </body>
 </html>
