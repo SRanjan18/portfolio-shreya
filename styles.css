@@ -25,28 +25,48 @@ body.light-theme {
   --shadow: 0 30px 90px rgba(53,45,31,.12);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: #030303;
+}
+html:has(body.light-theme) {
+  background: #f8fafc;
+}
 body {
   margin: 0;
   color: var(--text);
-  background:
-    radial-gradient(circle at 15% -10%, rgba(77,243,255,.12), transparent 30%),
-    radial-gradient(circle at 85% 8%, rgba(157,108,255,.13), transparent 26%),
-    linear-gradient(135deg, #070913 0%, #0b1020 52%, #111026 100%);
+  background: transparent;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
+  isolation: isolate;
+  transition: background-color .45s ease, color .3s ease;
 }
 body.light-theme {
-  background:
-    radial-gradient(circle at 10% -10%, rgba(22,184,200,.14), transparent 30%),
-    radial-gradient(circle at 90% 8%, rgba(124,77,255,.13), transparent 26%),
-    linear-gradient(135deg, #fffaf0 0%, #f1f7ff 52%, #fff2fb 100%);
+  background: transparent;
 }
 a { color: inherit; text-decoration: none; }
-#neural-bg { display: none; }
+#neural-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background: #030303;
+  transition: background-color .45s ease;
+}
+body.light-theme #neural-bg {
+  background: linear-gradient(135deg, #ffffff, #f8fafc 58%, #f1f5f9);
+}
 #cursor-trail { position: fixed; inset: 0; z-index: 80; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; }
 body::before,
 body::after { display: none; }
+header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
 .ai-chaser {
   position: fixed;
   left: -100px;
@@ -1079,15 +1099,7 @@ nav a:hover { color: var(--text); }
   isolation: isolate;
 }
 .hero::before {
-  content: "";
-  position: absolute;
-  inset: 4% -8% 2%;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 78% 48%, rgba(77,243,255,.2), transparent 22%),
-    radial-gradient(circle at 86% 22%, rgba(157,108,255,.25), transparent 26%),
-    radial-gradient(circle at 8% 72%, rgba(255,91,216,.12), transparent 26%),
-    linear-gradient(115deg, transparent 0 48%, rgba(77,243,255,.07) 48% 49%, transparent 49% 100%);
+  display: none;
 }
 h1, h2, h3, p { margin-top: 0; }
 .intro-line { min-height: 1.02em; margin: 14px 0 18px; font-size: clamp(2rem, 4vw, 4.3rem); font-weight: 900; line-height: .95; letter-spacing: -.07em; }
@@ -2256,6 +2268,73 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   display: grid;
   place-items: center;
   perspective: 1300px;
+}
+.pipeline-lab {
+  position: relative;
+  min-height: min(500px, calc(100vh - 150px));
+  display: grid;
+  place-items: center;
+  perspective: 1300px;
+  overflow: visible;
+}
+#pipeline-canvas {
+  width: min(580px, 100%);
+  height: min(460px, calc(100vh - 165px));
+  min-height: 360px;
+  display: block;
+  border-radius: 34px;
+  cursor: crosshair;
+  pointer-events: auto;
+  filter: drop-shadow(0 28px 70px rgba(0,0,0,.18));
+}
+.pipeline-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: max-content;
+  max-width: min(440px, 86%);
+  padding: 12px 16px;
+  border: 1px solid rgba(0,191,255,.12);
+  border-radius: 18px;
+  color: rgba(248,251,255,.88);
+  background: rgba(3,3,3,.34);
+  box-shadow: 0 24px 58px rgba(0,0,0,.16);
+  backdrop-filter: blur(14px);
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+.pipeline-caption span {
+  color: var(--lime);
+  font: 900 .62rem/1 "JetBrains Mono", monospace;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.pipeline-caption strong {
+  font: 850 clamp(.7rem, 1vw, .86rem)/1.35 "JetBrains Mono", monospace;
+}
+body.light-theme .pipeline-caption {
+  color: rgba(15,23,42,.82);
+  border-color: rgba(71,85,105,.12);
+  background: rgba(248,250,252,.62);
+}
+.role-typing-top {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 16px;
+  padding: 10px 13px;
+  border: 1px solid rgba(77,243,255,.18);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(77,243,255,.12), rgba(157,108,255,.08));
+  box-shadow: 0 14px 40px rgba(0,0,0,.18), inset 0 0 26px rgba(255,255,255,.035);
+}
+body.light-theme .role-typing-top {
+  color: rgba(15,23,42,.78);
+  border-color: rgba(51,65,85,.12);
+  background: rgba(255,255,255,.68);
 }
 .topology-card {
   --tilt-x: 0deg;

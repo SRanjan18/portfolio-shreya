@@ -66,9 +66,9 @@
   <main>
     <section id="about" class="hero section">
       <div class="hero-copy reveal">
+        <p class="role-typing role-typing-top">Open to roles as: <span id="role-typewriter" aria-live="polite"></span></p>
         <p class="intro-line"><span>Hi, I’m Shreya Ranjan.</span></p>
         <h1>Architecting Production AI Solutions & Python Backends.</h1>
-        <p class="role-typing">Open to roles as: <span id="role-typewriter" aria-live="polite"></span></p>
         <p class="hero-text">AI Software Engineer at Accenture with ~4 years of experience across enterprise applications, Python services, AI agents, RAG-style retrieval, and intelligent automation systems.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#projects">Explore AI Projects ↗</a>
@@ -85,41 +85,8 @@
           </div>
         </div>
       </div>
-      <div class="hero-lab topology-lab reveal" aria-label="Interactive AI system topology map">
-        <div class="topology-card" id="topology-card">
-          <div class="topology-header">
-            <span>production-ai.pipeline</span>
-            <i>live topology</i>
-          </div>
-          <div class="topology-grid" aria-hidden="true">
-            <div class="topology-node node-python">
-              <b>Python API</b>
-              <small>FastAPI · Flask · PostgreSQL</small>
-              <ul class="topology-tooltip"><li>FastAPI</li><li>Flask</li><li>PostgreSQL</li><li>Celery</li></ul>
-            </div>
-            <div class="topology-node node-llm">
-              <b>Core LLM / Vector DB</b>
-              <small>LangChain · RAG · Embeddings</small>
-              <ul class="topology-tooltip"><li>LangChain</li><li>LlamaIndex</li><li>RAG</li><li>ChromaDB</li></ul>
-            </div>
-            <div class="topology-node node-react">
-              <b>React UI Framework</b>
-              <small>Interfaces · State · Components</small>
-              <ul class="topology-tooltip"><li>Next.js</li><li>TailwindCSS</li><li>Redux</li></ul>
-            </div>
-            <svg class="topology-links" viewBox="0 0 680 360" role="img" aria-label="Python API connects to LLM core and React UI">
-              <path d="M150 178 C260 90, 360 92, 485 178" />
-              <path d="M150 178 C264 258, 370 260, 485 178" />
-              <path d="M340 178 C390 132, 432 130, 485 178" />
-            </svg>
-            <span class="data-packet packet-one" aria-hidden="true"></span>
-            <span class="data-packet packet-two" aria-hidden="true"></span>
-            <span class="data-packet packet-three" aria-hidden="true"></span>
-          </div>
-          <div class="topology-footer">
-            <span>backend</span><span>retrieval</span><span>frontend</span>
-          </div>
-        </div>
+      <div class="hero-lab pipeline-lab reveal" aria-label="Live AI data flow pipeline simulation">
+        <canvas id="pipeline-canvas" aria-hidden="true"></canvas>
       </div>
     </section>
 
