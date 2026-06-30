@@ -755,6 +755,147 @@ body.intro-ready #about .hero-lab { animation-delay: .12s; }
 .matrix-loader.is-blasting .matrix-ingestion p {
   animation: matrix-text-exit .42s cubic-bezier(.18,.88,.22,1) forwards;
 }
+.stack-loader-layers {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.stack-phase {
+  position: absolute;
+  top: 50%;
+  width: min(360px, 29vw);
+  min-width: 230px;
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  opacity: 0;
+  transform: translateY(-50%) translateY(24px) scale(.94);
+  filter: blur(8px);
+  animation: phase-enter .72s cubic-bezier(.18,.9,.2,1) forwards;
+}
+.python-phase { left: clamp(24px, 8vw, 130px); animation-delay: .08s; }
+.ai-phase { left: 50%; transform: translate(-50%, -50%) translateY(24px) scale(.94); animation-delay: 1.5s; }
+.react-phase { right: clamp(24px, 8vw, 130px); animation-delay: 3s; }
+.matrix-loader.is-blasting .stack-phase {
+  animation: phase-align .72s cubic-bezier(.16,.9,.18,1) forwards;
+}
+.matrix-loader.is-blasting .python-phase { --align-x: calc(50vw - clamp(24px, 8vw, 130px) - 180px); }
+.matrix-loader.is-blasting .ai-phase { --align-x: 0px; }
+.matrix-loader.is-blasting .react-phase { --align-x: calc(-50vw + clamp(24px, 8vw, 130px) + 180px); }
+.phase-mark {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 0 34px rgba(77,243,255,.38));
+}
+.python-mark {
+  transform: rotate(-8deg);
+}
+.python-mark span {
+  position: absolute;
+  width: 68px;
+  height: 48px;
+  border-radius: 20px 20px 14px 20px;
+  background: linear-gradient(135deg, #3572a5, #4df3ff);
+  box-shadow: 0 0 34px rgba(77,243,255,.32);
+}
+.python-mark span:nth-child(1) { top: 18px; left: 18px; }
+.python-mark span:nth-child(2) { right: 18px; bottom: 18px; background: linear-gradient(135deg, #ffe873, #c8ff42); }
+.python-mark::before,
+.python-mark::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #050505;
+  z-index: 2;
+}
+.python-mark::before { left: 38px; top: 34px; }
+.python-mark::after { right: 38px; bottom: 34px; }
+.ai-mark {
+  border: 1px solid rgba(77,243,255,.34);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,255,66,.34), rgba(77,243,255,.15) 40%, transparent 70%);
+  animation: ai-compute 1.05s ease-in-out infinite alternate;
+}
+.ai-mark::before,
+.ai-mark::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(141,113,255,.42);
+  clip-path: polygon(50% 0, 92% 28%, 80% 80%, 50% 100%, 18% 80%, 8% 28%);
+  animation: synapse-poly-spin 5s linear infinite;
+}
+.ai-mark::after { inset: -8px; border-color: rgba(200,255,66,.24); animation-direction: reverse; }
+.ai-mark i {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #eaffff;
+  box-shadow: 0 0 18px rgba(77,243,255,.86);
+}
+.ai-mark i:nth-child(1) { top: 10px; left: 50%; }
+.ai-mark i:nth-child(2) { right: 12px; top: 36px; }
+.ai-mark i:nth-child(3) { right: 28px; bottom: 12px; }
+.ai-mark i:nth-child(4) { left: 26px; bottom: 16px; }
+.ai-mark i:nth-child(5) { left: 12px; top: 42px; }
+.react-mark {
+  animation: react-core-spin 7s linear infinite;
+}
+.react-mark::before {
+  content: "";
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #eaffff, #4df3ff 48%, transparent 70%);
+  box-shadow: 0 0 40px rgba(77,243,255,.55);
+}
+.react-mark span {
+  position: absolute;
+  width: 112px;
+  height: 38px;
+  border: 2px solid rgba(77,243,255,.72);
+  border-radius: 50%;
+}
+.react-mark span:nth-child(2) { transform: rotate(60deg); }
+.react-mark span:nth-child(3) { transform: rotate(-60deg); }
+.phase-console {
+  width: 100%;
+  min-height: 92px;
+  padding: 16px 18px;
+  border: 1px solid rgba(77,243,255,.18);
+  border-radius: 18px;
+  background: rgba(0,0,0,.48);
+  box-shadow: 0 18px 58px rgba(0,0,0,.36), inset 0 0 30px rgba(77,243,255,.04);
+  backdrop-filter: blur(12px);
+  color: rgba(220,250,255,.86);
+  font: 800 clamp(.58rem, 1vw, .74rem)/1.65 "JetBrains Mono", monospace;
+}
+.phase-console p {
+  width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid rgba(200,255,66,.8);
+  animation: type-line 1.08s steps(48) forwards, cursor-blink .6s step-end infinite;
+}
+.phase-console p + p { animation-delay: .45s, .45s; }
+.ai-phase .phase-console p { animation-delay: 1.52s, 1.52s; }
+.ai-phase .phase-console p + p { animation-delay: 1.92s, 1.92s; }
+.react-phase .phase-console p { animation-delay: 3.02s, 3.02s; }
+.react-phase .phase-console p + p { animation-delay: 3.42s, 3.42s; }
+.matrix-loader.is-blasting .phase-console {
+  opacity: 0;
+  transform: translateY(16px) scale(.9);
+  transition: opacity .32s ease, transform .32s ease;
+}
 .bypass-loader {
   top: 24px;
   right: 24px;
@@ -775,6 +916,18 @@ body.intro-ready #about .hero-lab { animation-delay: .12s; }
 @keyframes matrix-text-exit {
   to { opacity: 0; transform: translateX(13vw) scale(1.08) skewX(-7deg); filter: blur(8px); }
 }
+@keyframes phase-enter {
+  to { opacity: 1; filter: blur(0); transform: translateY(-50%) translateY(0) scale(1); }
+}
+@keyframes phase-align {
+  to { opacity: 1; filter: blur(0) brightness(1.28); transform: translate(var(--align-x), -50%) scale(1.18); }
+}
+@keyframes ai-compute {
+  to { transform: scale(1.07); filter: brightness(1.28); }
+}
+@keyframes react-core-spin { to { rotate: 360deg; } }
+@keyframes type-line { to { width: 100%; } }
+@keyframes cursor-blink { 50% { border-color: transparent; } }
 @keyframes loader-grid-drift { to { background-position: 0 0, 58px 58px, -58px 58px; } }
 @keyframes core-pulse { to { transform: scale(1.04); filter: brightness(1.16); } }
 @keyframes core-ring { to { rotate: 360deg; } }

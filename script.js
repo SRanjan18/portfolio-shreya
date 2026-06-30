@@ -56,7 +56,7 @@ if (savedTheme === "light") {
       setTimeout(() => loader.remove(), 620);
     }, blast ? 620 : 0);
   };
-  const bootTimer = setTimeout(() => closeLoader(true), 2500);
+  const bootTimer = setTimeout(() => closeLoader(true), 4500);
   skipLoader?.addEventListener("click", () => {
     clearTimeout(bootTimer);
     closeLoader(false);
@@ -173,8 +173,8 @@ function drawSynapseLoader() {
   loaderCtx.fillStyle = "rgba(3,3,3,.24)";
   loaderCtx.fillRect(0, 0, innerWidth, innerHeight);
 
-  const burstAge = synapseBursting ? Math.min(1, (now - synapseBurstStartedAt) / 740) : 0;
-  const speed = synapseBursting ? 16 + burstAge * 38 : 1;
+  const burstAge = synapseBursting ? Math.min(1, (now - synapseBurstStartedAt) / 820) : 0;
+  const speed = synapseBursting ? 24 + burstAge * 58 : 1;
   loaderCtx.lineCap = "round";
 
   for (let i = 0; i < matrixPoints.length; i++) {

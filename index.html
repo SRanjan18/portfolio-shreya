@@ -13,12 +13,30 @@
 </head>
 <body>
   <div class="loader matrix-loader" aria-live="polite" aria-label="Loading Shreya Ranjan portfolio">
-    <button class="skip-loader bypass-loader" type="button" aria-label="Bypass loading system">[ BYPASS SYSTEM ]</button>
+    <button class="skip-loader bypass-loader" type="button" aria-label="Bypass cognitive logs">[ BYPASS COGNITIVE LOGS ↗ ]</button>
     <canvas id="synapse-loader-canvas" aria-hidden="true"></canvas>
-    <div class="matrix-ingestion" aria-hidden="true">
-      <p><span>SYSTEM:</span> INGESTING KNOWLEDGE BASE...</p>
-      <p><span>GRAPH:</span> MAPPING PRODUCTION PIPELINES...</p>
-      <p><span>AGENTS:</span> ORCHESTRATING RUNTIME ENGINE...</p>
+    <div class="stack-loader-layers" aria-hidden="true">
+      <section class="stack-phase python-phase">
+        <div class="phase-mark python-mark"><span></span><span></span></div>
+        <div class="phase-console">
+          <p>[PY] Initializing FastAPI/Flask microservices...</p>
+          <p>[DB] Spawning PostgreSQL connection pools...</p>
+        </div>
+      </section>
+      <section class="stack-phase ai-phase">
+        <div class="phase-mark ai-mark"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="phase-console">
+          <p>[AI] Initializing LangChain Orchestration...</p>
+          <p>[VDB] Mapping Latent Space Embeddings: Dimensions [1, 1536].</p>
+        </div>
+      </section>
+      <section class="stack-phase react-phase">
+        <div class="phase-mark react-mark"><span></span><span></span><span></span></div>
+        <div class="phase-console">
+          <p>[JS] Hydrating virtual DOM tree...</p>
+          <p>[UI] Tailoring responsive interface components...</p>
+        </div>
+      </section>
     </div>
   </div>
 
