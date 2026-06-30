@@ -27,6 +27,8 @@ let musicStep = 0;
 let loaderTrailPoints = [];
 let synapseBursting = false;
 let synapseBurstStartedAt = 0;
+let matrixPoints = [];
+let loaderMouse = { x: innerWidth / 2, y: innerHeight / 2, active: false };
 
 const savedTheme = localStorage.getItem("shreya-theme");
 if (savedTheme === "light") {
@@ -140,8 +142,24 @@ function resize() {
     loaderCanvas.style.width = innerWidth + "px";
     loaderCanvas.style.height = innerHeight + "px";
     loaderCtx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    initMatrixPoints();
   }
   particles = [];
+}
+
+function initMatrixPoints() {
+  const count = Math.min(1400, Math.max(520, Math.floor((innerWidth * innerHeight) / 1150)));
+  matrixPoints = Array.from({ length: count }, (_, index) => ({
+    x: Math.random() * innerWidth,
+    y: Math.random() * innerHeight,
+    z: Math.random() * 1.8 + .18,
+    baseX: Math.random() * innerWidth,
+    baseY: Math.random() * innerHeight,
+    vx: (Math.random() - .5) * .22,
+    vy: (Math.random() - .5) * .22,
+    tone: index % 11 === 0 ? "lime" : index % 5 === 0 ? "violet" : "cyan",
+    glyph: index % 19 === 0 ? ["∑", "λ", "∇", "01", "AI", "x,y"][Math.floor(Math.random() * 6)] : ""
+  }));
 }
 
 function drawSynapseLoader() {
@@ -152,72 +170,89 @@ function drawSynapseLoader() {
   loaderCtx.clearRect(0, 0, innerWidth, innerHeight);
   loaderCtx.save();
   loaderCtx.globalCompositeOperation = "lighter";
-  const nodes = [
-    [cx, cy - 78],
-    [cx + 92, cy - 30],
-    [cx + 62, cy + 82],
-    [cx - 70, cy + 78],
-    [cx - 98, cy - 22],
-    [cx, cy]
-  ];
-  const pulse = Math.sin(time * 1.8) * 8;
+  loaderCtx.fillStyle = "rgba(3,3,3,.24)";
+  loaderCtx.fillRect(0, 0, innerWidth, innerHeight);
+
+  const burstAge = synapseBursting ? Math.min(1, (now - synapseBurstStartedAt) / 740) : 0;
+  const speed = synapseBursting ? 16 + burstAge * 38 : 1;
   loaderCtx.lineCap = "round";
-  for (let i = 0; i < nodes.length; i++) {
-    for (let j = i + 1; j < nodes.length; j++) {
-      const [ax, ay] = nodes[i];
-      const [bx, by] = nodes[j];
-      const distance = Math.hypot(ax - bx, ay - by);
-      if (distance > 185) continue;
-      loaderCtx.strokeStyle = `rgba(77,243,255,${0.14 + Math.sin(time + i + j) * 0.04})`;
-      loaderCtx.lineWidth = 1.2;
+
+  for (let i = 0; i < matrixPoints.length; i++) {
+    const p = matrixPoints[i];
+    const dx = p.x - loaderMouse.x;
+    const dy = p.y - loaderMouse.y;
+    const distance = Math.hypot(dx, dy) || 1;
+    const influence = Math.max(0, 1 - distance / 260);
+    const swirl = influence * (loaderMouse.active ? 4.8 : 1.2);
+    const angle = Math.atan2(dy, dx) + Math.PI / 2;
+
+    p.vx += Math.cos(angle) * swirl * .018 + (dx / distance) * influence * .055;
+    p.vy += Math.sin(angle) * swirl * .018 + (dy / distance) * influence * .055;
+    p.x += (p.vx + Math.sin(time * .8 + p.z * 4) * .08) * speed;
+    p.y += (p.vy + Math.cos(time * .7 + p.z * 3) * .08) * speed;
+    p.vx *= .93;
+    p.vy *= .93;
+
+    if (synapseBursting) {
+      const bx = p.x - cx;
+      const by = p.y - cy;
+      p.x += bx * .035 * speed;
+      p.y += by * .035 * speed;
+    }
+
+    if (p.x < -80 || p.x > innerWidth + 80 || p.y < -80 || p.y > innerHeight + 80) {
+      p.x = Math.random() * innerWidth;
+      p.y = Math.random() * innerHeight;
+      p.vx = (Math.random() - .5) * .24;
+      p.vy = (Math.random() - .5) * .24;
+    }
+
+    const alpha = Math.min(.9, .16 + p.z * .18 + influence * .55);
+    const color = p.tone === "lime" ? `rgba(200,255,66,${alpha})` : p.tone === "violet" ? `rgba(141,113,255,${alpha})` : `rgba(77,243,255,${alpha})`;
+    loaderCtx.fillStyle = color;
+    loaderCtx.beginPath();
+    loaderCtx.arc(p.x, p.y, Math.max(.7, p.z * 1.15 + influence * 1.8), 0, Math.PI * 2);
+    loaderCtx.fill();
+
+    if (p.glyph && i % 3 === 0) {
+      loaderCtx.font = `${8 + p.z * 4}px JetBrains Mono`;
+      loaderCtx.fillStyle = `rgba(220,250,255,${.16 + influence * .28})`;
+      loaderCtx.fillText(p.glyph, p.x + 8, p.y - 8);
+    }
+  }
+
+  for (let i = 0; i < matrixPoints.length; i += 12) {
+    const a = matrixPoints[i];
+    for (let j = i + 24; j < Math.min(matrixPoints.length, i + 96); j += 24) {
+      const b = matrixPoints[j];
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d > 132) continue;
+      loaderCtx.strokeStyle = `rgba(77,243,255,${(1 - d / 132) * .15})`;
+      loaderCtx.lineWidth = .8;
       loaderCtx.beginPath();
-      loaderCtx.moveTo(ax, ay);
-      loaderCtx.lineTo(bx, by);
+      loaderCtx.moveTo(a.x, a.y);
+      loaderCtx.lineTo(b.x, b.y);
       loaderCtx.stroke();
     }
   }
-  nodes.forEach(([x, y], index) => {
-    const radius = index === 5 ? 11 + pulse * .18 : 5 + Math.sin(time + index) * 1.5;
-    const gradient = loaderCtx.createRadialGradient(x, y, 1, x, y, 26);
-    gradient.addColorStop(0, index === 5 ? "rgba(200,255,66,.95)" : "rgba(235,255,255,.95)");
-    gradient.addColorStop(.45, "rgba(77,243,255,.5)");
-    gradient.addColorStop(1, "rgba(77,243,255,0)");
-    loaderCtx.fillStyle = gradient;
+
+  loaderTrailPoints = loaderTrailPoints.filter((point) => now - point.t < 620);
+  for (let i = 1; i < loaderTrailPoints.length; i++) {
+    const a = loaderTrailPoints[i - 1];
+    const b = loaderTrailPoints[i];
+    const age = (now - b.t) / 620;
+    loaderCtx.strokeStyle = `rgba(200,255,66,${Math.max(0, .75 - age * .75)})`;
+    loaderCtx.lineWidth = Math.max(1, 8 * (1 - age));
     loaderCtx.beginPath();
-    loaderCtx.arc(x, y, radius + 18, 0, Math.PI * 2);
-    loaderCtx.fill();
-    loaderCtx.fillStyle = index === 5 ? "#c8ff42" : "#eaffff";
-    loaderCtx.beginPath();
-    loaderCtx.arc(x, y, Math.max(3, radius), 0, Math.PI * 2);
-    loaderCtx.fill();
-  });
-  loaderTrailPoints = loaderTrailPoints.filter((point) => now - point.t < 860);
-  for (let i = 0; i < loaderTrailPoints.length; i++) {
-    const point = loaderTrailPoints[i];
-    const age = (now - point.t) / 860;
-    const alpha = Math.max(0, .78 - age * .78);
-    loaderCtx.strokeStyle = `rgba(77,243,255,${alpha})`;
-    loaderCtx.lineWidth = Math.max(1, 6 * (1 - age));
-    loaderCtx.beginPath();
-    loaderCtx.moveTo(cx, cy);
-    loaderCtx.quadraticCurveTo((cx + point.x) / 2, point.y - 30, point.x, point.y);
+    loaderCtx.moveTo(a.x, a.y);
+    loaderCtx.lineTo(b.x, b.y);
     loaderCtx.stroke();
-    if (i > 0) {
-      const prev = loaderTrailPoints[i - 1];
-      loaderCtx.strokeStyle = `rgba(141,113,255,${alpha * .65})`;
-      loaderCtx.lineWidth = Math.max(1, 4 * (1 - age));
-      loaderCtx.beginPath();
-      loaderCtx.moveTo(prev.x, prev.y);
-      loaderCtx.lineTo(point.x, point.y);
-      loaderCtx.stroke();
-    }
   }
   if (synapseBursting) {
-    const burstAge = Math.min(1, (now - synapseBurstStartedAt) / 720);
     loaderCtx.strokeStyle = `rgba(200,255,66,${1 - burstAge})`;
-    loaderCtx.lineWidth = 2 + burstAge * 5;
+    loaderCtx.lineWidth = 2 + burstAge * 10;
     loaderCtx.beginPath();
-    loaderCtx.arc(cx, cy, 80 + burstAge * Math.max(innerWidth, innerHeight), 0, Math.PI * 2);
+    loaderCtx.arc(cx, cy, 20 + burstAge * Math.max(innerWidth, innerHeight) * 1.15, 0, Math.PI * 2);
     loaderCtx.stroke();
   }
   loaderCtx.restore();
@@ -257,8 +292,11 @@ addEventListener("pointermove", (event) => {
   trailPoints.push({ x: mouse.x, y: mouse.y, t: Date.now() });
   if (trailPoints.length > 62) trailPoints.shift();
   if (loader && document.body.contains(loader)) {
+    loaderMouse.x = mouse.x;
+    loaderMouse.y = mouse.y;
+    loaderMouse.active = true;
     loaderTrailPoints.push({ x: mouse.x, y: mouse.y, t: Date.now() });
-    if (loaderTrailPoints.length > 34) loaderTrailPoints.shift();
+    if (loaderTrailPoints.length > 42) loaderTrailPoints.shift();
   }
 });
 
