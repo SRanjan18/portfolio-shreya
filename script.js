@@ -56,7 +56,7 @@ if (savedTheme === "light") {
       setTimeout(() => loader.remove(), 620);
     }, blast ? 620 : 0);
   };
-  const bootTimer = setTimeout(() => closeLoader(true), 4500);
+  const bootTimer = setTimeout(() => closeLoader(true), 6000);
   skipLoader?.addEventListener("click", () => {
     clearTimeout(bootTimer);
     closeLoader(false);
