@@ -2150,3 +2150,234 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   .terminal-card { left: 14px; right: 14px; bottom: 16px; width: auto; }
   #cursor-trail { display: none; }
 }
+
+/* Compact AI-engineering hero override */
+#about.hero {
+  width: min(1180px, calc(100% - 40px));
+  min-height: calc(100vh - 98px);
+  padding: clamp(22px, 4vh, 46px) 0 clamp(28px, 4vh, 44px);
+  grid-template-columns: minmax(0, .92fr) minmax(360px, .9fr);
+  gap: clamp(28px, 5vw, 70px);
+}
+#about .hero-copy {
+  max-width: 680px;
+}
+#about .intro-line {
+  margin: 10px 0 14px;
+  font-size: clamp(1.45rem, 2.4vw, 2.45rem);
+  letter-spacing: -.055em;
+}
+#about .intro-line span {
+  border-right-width: 3px;
+}
+#about h1 {
+  max-width: 720px;
+  margin-bottom: 18px;
+  font-size: clamp(2.55rem, 5.1vw, 5.2rem);
+  line-height: .94;
+  letter-spacing: -.075em;
+}
+.role-typing {
+  min-height: 1.8em;
+  margin: 0 0 18px;
+  color: rgba(228,241,255,.86);
+  font: 850 clamp(.9rem, 1.35vw, 1.12rem)/1.6 "JetBrains Mono", monospace;
+  text-shadow: 0 0 18px rgba(77,243,255,.12);
+}
+#role-typewriter {
+  color: var(--lime);
+  border-right: 2px solid var(--cyan);
+  padding-right: 3px;
+  text-shadow: 0 0 20px rgba(200,255,66,.16);
+}
+#about .hero-text {
+  max-width: 600px;
+  font-size: clamp(.94rem, 1.2vw, 1.04rem);
+  line-height: 1.72;
+}
+#about .hero-actions {
+  margin-top: 24px;
+}
+.topology-lab {
+  min-height: min(520px, calc(100vh - 180px));
+  display: grid;
+  place-items: center;
+  perspective: 1300px;
+}
+.topology-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  position: relative;
+  width: min(560px, 100%);
+  min-height: 430px;
+  padding: clamp(18px, 2.6vw, 30px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 34px;
+  background:
+    linear-gradient(rgba(77,243,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(141,113,255,.07) 1px, transparent 1px),
+    radial-gradient(circle at 52% 42%, rgba(77,243,255,.18), transparent 28%),
+    rgba(8,12,27,.48);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  box-shadow: 0 36px 110px rgba(0,0,0,.32), inset 0 0 80px rgba(77,243,255,.07);
+  backdrop-filter: blur(20px);
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform .18s ease-out, border-color .22s ease;
+  animation: topology-float 5.5s ease-in-out infinite;
+}
+.topology-card:hover {
+  border-color: rgba(77,243,255,.36);
+}
+.topology-card::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: conic-gradient(from 180deg, transparent, rgba(77,243,255,.08), transparent, rgba(200,255,66,.07), transparent);
+  animation: topology-scan 11s linear infinite;
+}
+.topology-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(255,255,255,.16), transparent 28%);
+  opacity: .72;
+}
+.topology-header,
+.topology-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(226,238,255,.78);
+  font: 850 .72rem/1.3 "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.topology-header i {
+  color: var(--lime);
+  font-style: normal;
+}
+.topology-grid {
+  position: relative;
+  z-index: 2;
+  height: 325px;
+  margin: 18px 0 12px;
+  transform-style: preserve-3d;
+}
+.topology-links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  pointer-events: none;
+}
+.topology-links path {
+  stroke: rgba(77,243,255,.58);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 10 13;
+  filter: drop-shadow(0 0 10px rgba(77,243,255,.5));
+  animation: topology-dash 2.6s linear infinite;
+}
+.topology-node {
+  position: absolute;
+  z-index: 3;
+  width: min(210px, 42%);
+  padding: 16px 17px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 22px;
+  background: rgba(5,8,18,.72);
+  box-shadow: 0 22px 58px rgba(0,0,0,.26), inset 0 0 34px rgba(255,255,255,.035);
+  transform: translateZ(48px);
+}
+.topology-node::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 22px var(--cyan);
+}
+.topology-node b {
+  display: block;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: clamp(.92rem, 1.3vw, 1.05rem);
+  letter-spacing: -.04em;
+}
+.topology-node small {
+  display: block;
+  color: var(--muted);
+  line-height: 1.35;
+  font-weight: 800;
+}
+.node-python { left: 0; top: 118px; }
+.node-llm {
+  left: 50%;
+  top: 72px;
+  transform: translateX(-50%) translateZ(78px) scale(1.08);
+  border-color: rgba(200,255,66,.28);
+}
+.node-llm::before { background: var(--lime); box-shadow: 0 0 24px var(--lime); }
+.node-react { right: 0; top: 118px; }
+.node-react::before { background: #61dafb; box-shadow: 0 0 24px #61dafb; }
+.topology-footer {
+  justify-content: center;
+  gap: 14px;
+}
+.topology-footer span {
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+}
+@keyframes topology-float {
+  50% { translate: 0 -12px; }
+}
+@keyframes topology-scan {
+  to { rotate: 360deg; }
+}
+@keyframes topology-dash {
+  to { stroke-dashoffset: -46; }
+}
+@media (max-width: 1000px) {
+  #about.hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: 42px;
+  }
+  .topology-lab {
+    min-height: 460px;
+  }
+}
+@media (max-width: 640px) {
+  #about h1 {
+    font-size: clamp(2.25rem, 14vw, 3.6rem);
+  }
+  .role-typing {
+    font-size: .78rem;
+  }
+  .topology-card {
+    min-height: 430px;
+  }
+  .topology-grid {
+    height: 330px;
+  }
+  .topology-node {
+    width: 76%;
+  }
+  .node-python { left: 0; top: 24px; }
+  .node-llm { top: 132px; }
+  .node-react { right: 0; top: 242px; }
+}

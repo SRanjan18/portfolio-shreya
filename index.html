@@ -68,48 +68,43 @@
       <div class="hero-copy reveal">
         <p class="eyebrow">AI Software Engineer · Generative AI Engineer</p>
         <p class="intro-line"><span>Hi, I’m Shreya Ranjan.</span></p>
-        <h1>Shreya Ranjan — Software Engineer & Generative AI Applications Developer</h1>
-        <p class="hero-text">AI Software Engineer at Accenture with ~4 years of experience across enterprise applications, AI agents, RAG-style retrieval, document intelligence, and intelligent automation systems.</p>
+        <h1>Architecting Production AI Solutions & Python Backends.</h1>
+        <p class="role-typing">Open to roles as: <span id="role-typewriter" aria-live="polite"></span></p>
+        <p class="hero-text">AI Software Engineer at Accenture with ~4 years of experience across enterprise applications, Python services, AI agents, RAG-style retrieval, and intelligent automation systems.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#projects">Explore AI projects</a>
           <a class="btn ghost" href="mailto:shreya18ranjan@gmail.com?subject=Resume%20request%20for%20Shreya%20Ranjan">Request resume</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/shreya-ranjan-ai-software-engineer/" target="_blank" rel="noreferrer">LinkedIn profile</a>
         </div>
       </div>
-      <div class="hero-lab reveal" aria-label="Animated AI robot assistant">
-        <div class="robot-stage">
-          <div class="robot-orbit orbit-one"></div>
-          <div class="robot-orbit orbit-two"></div>
-          <div class="ai-chip chip-rag">RAG</div>
-          <div class="ai-chip chip-nlp">NLP</div>
-          <div class="ai-chip chip-llm">LLM</div>
-          <div class="ai-robot" aria-hidden="true">
-            <div class="robot-antenna"><i></i></div>
-            <div class="robot-head">
-              <span class="robot-eye"></span>
-              <span class="robot-eye"></span>
-              <b class="robot-smile"></b>
-            </div>
-            <div class="robot-neck"></div>
-            <div class="robot-body">
-              <span class="robot-core">AI</span>
-              <i></i><i></i><i></i>
-            </div>
-            <div class="robot-arm left"></div>
-            <div class="robot-arm right"></div>
-            <div class="robot-base"></div>
+      <div class="hero-lab topology-lab reveal" aria-label="Interactive AI system topology map">
+        <div class="topology-card" id="topology-card">
+          <div class="topology-header">
+            <span>production-ai.pipeline</span>
+            <i>live topology</i>
           </div>
-          <div class="holo-panel">
-            <span>agent online</span>
-            <strong>retrieval • reasoning • automation</strong>
+          <div class="topology-grid" aria-hidden="true">
+            <div class="topology-node node-python">
+              <b>Python API</b>
+              <small>FastAPI · Flask · PostgreSQL</small>
+            </div>
+            <div class="topology-node node-llm">
+              <b>Core LLM / Vector DB</b>
+              <small>LangChain · RAG · Embeddings</small>
+            </div>
+            <div class="topology-node node-react">
+              <b>React UI Framework</b>
+              <small>Interfaces · State · Components</small>
+            </div>
+            <svg class="topology-links" viewBox="0 0 680 360" role="img" aria-label="Python API connects to LLM core and React UI">
+              <path d="M150 178 C260 90, 360 92, 485 178" />
+              <path d="M150 178 C264 258, 370 260, 485 178" />
+              <path d="M340 178 C390 132, 432 130, 485 178" />
+            </svg>
           </div>
-        </div>
-        <div class="terminal-card">
-          <div class="terminal-top"><i></i><i></i><i></i><span>agent-router.py</span></div>
-          <pre><code>request = classify(input)
-agent = route(request)
-answer = ground(agent, knowledge)
-return safe_response(answer)</code></pre>
+          <div class="topology-footer">
+            <span>backend</span><span>retrieval</span><span>frontend</span>
+          </div>
         </div>
       </div>
     </section>

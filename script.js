@@ -13,6 +13,8 @@ const loader = document.querySelector(".loader");
 const skipLoader = document.querySelector(".skip-loader");
 const loaderCanvas = document.querySelector("#synapse-loader-canvas");
 const loaderCtx = loaderCanvas?.getContext("2d");
+const roleTypewriter = document.querySelector("#role-typewriter");
+const topologyCard = document.querySelector("#topology-card");
 
 let width = 0;
 let height = 0;
@@ -34,6 +36,12 @@ const bypassPhrases = [
   "[ SKIP LOG STREAM ↗ ]",
   "[ HALT COMPILATION ↗ ]",
   "[ INJECT RUNTIME ↗ ]"
+];
+const roleTitles = [
+  "AI Engineer",
+  "Python Backend Engineer",
+  "Generative AI Applications Developer",
+  "Full-Stack AI Developer (React Stack Frameworks)"
 ];
 
 const savedTheme = localStorage.getItem("shreya-theme");
@@ -84,6 +92,61 @@ if (savedTheme === "light") {
     }
   });
 })();
+
+function startRoleTyping() {
+  if (!roleTypewriter) return;
+  let titleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const tick = () => {
+    const current = roleTitles[titleIndex];
+    roleTypewriter.textContent = current.slice(0, charIndex);
+
+    if (!deleting && charIndex < current.length) {
+      charIndex += 1;
+      setTimeout(tick, 38);
+      return;
+    }
+
+    if (!deleting) {
+      deleting = true;
+      setTimeout(tick, 720);
+      return;
+    }
+
+    if (charIndex > 0) {
+      charIndex -= 1;
+      setTimeout(tick, 20);
+      return;
+    }
+
+    deleting = false;
+    titleIndex = (titleIndex + 1) % roleTitles.length;
+    setTimeout(tick, 140);
+  };
+
+  tick();
+}
+
+function setupTopologyTilt() {
+  if (!topologyCard) return;
+  topologyCard.addEventListener("pointermove", (event) => {
+    const rect = topologyCard.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) - .5;
+    const y = ((event.clientY - rect.top) / rect.height) - .5;
+    topologyCard.style.setProperty("--tilt-y", `${x * 10}deg`);
+    topologyCard.style.setProperty("--tilt-x", `${-y * 8}deg`);
+    topologyCard.style.setProperty("--glow-x", `${(x + .5) * 100}%`);
+    topologyCard.style.setProperty("--glow-y", `${(y + .5) * 100}%`);
+  });
+  topologyCard.addEventListener("pointerleave", () => {
+    topologyCard.style.setProperty("--tilt-y", "0deg");
+    topologyCard.style.setProperty("--tilt-x", "0deg");
+    topologyCard.style.setProperty("--glow-x", "50%");
+    topologyCard.style.setProperty("--glow-y", "50%");
+  });
+}
 
 function playNote(frequency, when, duration = .16) {
   if (!audioCtx) return;
@@ -401,5 +464,7 @@ function updateExperienceStack() {
 }
 
 resize();
+startRoleTyping();
+setupTopologyTilt();
 draw();
 updateExperienceStack();
