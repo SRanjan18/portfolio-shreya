@@ -769,7 +769,7 @@ body.intro-ready #about .hero-lab { animation-delay: .12s; }
   min-width: min(320px, calc(100vw - 44px));
   display: grid;
   justify-items: center;
-  gap: 22px;
+  gap: 18px;
   opacity: 0;
   transform: translateY(-50%) translateY(24px) scale(.94);
   filter: blur(8px);
@@ -882,24 +882,27 @@ body.intro-ready #about .hero-lab { animation-delay: .12s; }
 .phase-console {
   width: 100%;
   max-width: 450px;
-  min-height: 92px;
-  padding: 18px 24px;
-  border: 1px solid rgba(77,243,255,.18);
-  border-radius: 18px;
-  background: rgba(0,0,0,.48);
-  box-shadow: 0 18px 58px rgba(0,0,0,.36), inset 0 0 30px rgba(77,243,255,.04);
-  backdrop-filter: blur(12px);
-  color: rgba(220,250,255,.86);
-  font: 800 clamp(.58rem, 1.25vw, .78rem)/1.65 "JetBrains Mono", monospace;
+  min-height: 84px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  color: rgba(245,252,255,.92);
+  font: 800 clamp(.64rem, 1.35vw, .86rem)/1.72 "JetBrains Mono", monospace;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0,0,0,.8), 0 0 24px rgba(77,243,255,.18);
 }
 .phase-console p {
   width: 0;
   max-width: 100%;
   margin: 0;
   overflow: hidden;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  border-right: 1px solid rgba(200,255,66,.8);
+  white-space: nowrap;
+  overflow-wrap: normal;
+  border-right: 1px solid rgba(200,255,66,.72);
+  margin-inline: auto;
   animation: type-line 1.08s steps(48) forwards, cursor-blink .6s step-end infinite;
 }
 .phase-console p + p { animation-delay: .45s, .45s; }
@@ -916,11 +919,13 @@ body.intro-ready #about .hero-lab { animation-delay: .12s; }
   top: 24px;
   right: 24px;
   z-index: 10;
+  min-width: 228px;
   padding: 12px 16px;
   color: rgba(240,248,255,.86);
-  background: rgba(255,255,255,.055);
+  background: rgba(0,0,0,.28);
   border: 1px solid rgba(77,243,255,.24);
   box-shadow: 0 0 34px rgba(77,243,255,.08);
+  text-align: center;
 }
 .bypass-loader:hover {
   background: rgba(77,243,255,.14);

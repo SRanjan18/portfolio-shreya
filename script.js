@@ -29,6 +29,12 @@ let synapseBursting = false;
 let synapseBurstStartedAt = 0;
 let matrixPoints = [];
 let loaderMouse = { x: innerWidth / 2, y: innerHeight / 2, active: false };
+const bypassPhrases = [
+  "[ ESC TO BYPASS ↗ ]",
+  "[ SKIP LOG STREAM ↗ ]",
+  "[ HALT COMPILATION ↗ ]",
+  "[ INJECT RUNTIME ↗ ]"
+];
 
 const savedTheme = localStorage.getItem("shreya-theme");
 if (savedTheme === "light") {
@@ -42,9 +48,19 @@ if (savedTheme === "light") {
 (function runLoaderSequence() {
   if (!loader) return;
   let closed = false;
+  let phraseIndex = 0;
+  if (skipLoader) {
+    skipLoader.textContent = bypassPhrases[0];
+  }
+  const phraseTimer = setInterval(() => {
+    if (!skipLoader || closed) return;
+    phraseIndex = (phraseIndex + 1) % bypassPhrases.length;
+    skipLoader.textContent = bypassPhrases[phraseIndex];
+  }, 500);
   const closeLoader = (blast = true) => {
     if (closed) return;
     closed = true;
+    clearInterval(phraseTimer);
     if (blast) {
       synapseBursting = true;
       synapseBurstStartedAt = Date.now();
