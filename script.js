@@ -41,7 +41,7 @@ const roleTitles = [
   "AI Engineer",
   "Python Backend Engineer",
   "Generative AI Applications Developer",
-  "Full-Stack AI Developer (React Stack Frameworks)"
+  "Full-Stack AI Developer"
 ];
 
 const savedTheme = localStorage.getItem("shreya-theme");
