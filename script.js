@@ -346,9 +346,10 @@ function drawPipeline() {
 
   const panel = pipelineCtx.createRadialGradient(w * .5, h * .43, 8, w * .5, h * .46, Math.max(w, h) * .72);
   if (light) {
-    panel.addColorStop(0, "rgba(20,184,166,.045)");
-    panel.addColorStop(.58, "rgba(96,165,250,.032)");
-    panel.addColorStop(1, "rgba(248,250,252,.02)");
+    panel.addColorStop(0, "rgba(20,184,166,.20)");
+    panel.addColorStop(.36, "rgba(14,165,233,.13)");
+    panel.addColorStop(.72, "rgba(168,85,247,.07)");
+    panel.addColorStop(1, "rgba(255,255,255,.02)");
   } else {
     panel.addColorStop(0, "rgba(0,191,255,.09)");
     panel.addColorStop(.62, "rgba(52,211,153,.045)");
@@ -358,8 +359,8 @@ function drawPipeline() {
   roundRect(pipelineCtx, 14, 18, w - 28, h - 36, 34);
   pipelineCtx.fill();
 
-  pipelineCtx.globalAlpha = light ? .16 : .22;
-  pipelineCtx.strokeStyle = light ? "rgba(13,148,136,.2)" : "rgba(0,191,255,.15)";
+  pipelineCtx.globalAlpha = light ? .34 : .22;
+  pipelineCtx.strokeStyle = light ? "rgba(13,148,136,.32)" : "rgba(0,191,255,.15)";
   pipelineCtx.shadowColor = "transparent";
   pipelineCtx.shadowBlur = 0;
   pipelineCtx.lineWidth = .5;
@@ -386,16 +387,16 @@ function drawPipeline() {
   paths.forEach((path, index) => {
     const gradient = pipelineCtx.createLinearGradient(path.a.px, path.a.py, path.c.px, path.c.py);
     if (light) {
-      gradient.addColorStop(0, "rgba(15,23,42,.45)");
-      gradient.addColorStop(.5, index === 2 ? "rgba(15,23,42,.45)" : "rgba(13,148,136,.48)");
-      gradient.addColorStop(1, "rgba(15,23,42,.45)");
+      gradient.addColorStop(0, index === 2 ? "rgba(71,85,105,.72)" : "rgba(13,148,136,.88)");
+      gradient.addColorStop(.5, index === 2 ? "rgba(71,85,105,.62)" : "rgba(37,99,235,.86)");
+      gradient.addColorStop(1, index === 2 ? "rgba(71,85,105,.72)" : "rgba(14,165,233,.9)");
     } else {
       gradient.addColorStop(0, `${path.a.color}aa`);
       gradient.addColorStop(.5, index === 2 ? "#ffffff55" : "#ccff4288");
       gradient.addColorStop(1, `${path.c.color}aa`);
     }
     pipelineCtx.strokeStyle = gradient;
-    pipelineCtx.lineWidth = light ? (index === 2 ? 1.8 : 2.65) : (index === 2 ? 1.25 : 2.2);
+    pipelineCtx.lineWidth = light ? (index === 2 ? 2.15 : 3.15) : (index === 2 ? 1.25 : 2.2);
     pipelineCtx.setLineDash(index === 2 ? [7, 12] : [10, 14]);
     pipelineCtx.lineDashOffset = -time * 18 - index * 8;
     pipelineCtx.beginPath();
@@ -429,8 +430,8 @@ function drawPipeline() {
     pipelineCtx.strokeStyle = comet;
     pipelineCtx.lineWidth = packet.size * (light ? 1.95 : 1.65);
     pipelineCtx.lineCap = "round";
-    pipelineCtx.shadowColor = light ? `${color}55` : color;
-    pipelineCtx.shadowBlur = light ? 4 : 18;
+    pipelineCtx.shadowColor = light ? `${color}99` : color;
+    pipelineCtx.shadowBlur = light ? 9 : 18;
     pipelineCtx.beginPath();
     pipelineCtx.moveTo(tailPoint.x, tailPoint.y);
     pipelineCtx.lineTo(point.x, point.y);
@@ -463,8 +464,9 @@ function drawPipeline() {
     const impact = Math.max(pipelineImpacts[index], hovered ? .32 : 0);
     const glow = pipelineCtx.createRadialGradient(node.px, node.py, 0, node.px, node.py, node.r * 2.6);
     if (light) {
-      glow.addColorStop(0, `rgba(20,184,166,${.075 + impact * .09})`);
-      glow.addColorStop(.46, "rgba(96,165,250,.04)");
+      glow.addColorStop(0, `rgba(20,184,166,${.22 + impact * .12})`);
+      glow.addColorStop(.38, "rgba(14,165,233,.14)");
+      glow.addColorStop(.68, "rgba(168,85,247,.06)");
       glow.addColorStop(1, "rgba(255,255,255,0)");
     } else {
       glow.addColorStop(0, `${node.color}${impact > .4 ? "dd" : hovered ? "bb" : "66"}`);
