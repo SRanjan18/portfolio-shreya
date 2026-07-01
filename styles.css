@@ -2071,6 +2071,215 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   font-size: .82rem;
   font-weight: 800;
 }
+.credentials-showcase {
+  display: grid;
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.55fr);
+  gap: clamp(22px, 4vw, 46px);
+  align-items: start;
+}
+.education-feature,
+.certification-feature {
+  min-width: 0;
+}
+.education-card {
+  position: sticky;
+  top: 116px;
+  min-height: 420px;
+  padding: clamp(28px, 4vw, 46px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 18px;
+  overflow: hidden;
+  transform: rotate(-1.35deg);
+  color: #fff;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.18);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(209,255,48,.34), transparent 28%),
+    radial-gradient(circle at 90% 0%, rgba(0,240,255,.22), transparent 34%),
+    linear-gradient(145deg, #7c3aed 0%, #5b45f4 48%, #27145f 100%);
+  box-shadow: 0 28px 90px rgba(65,42,174,.32);
+}
+.education-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, transparent, #000 24%, #000);
+  opacity: .75;
+}
+.education-card > * {
+  position: relative;
+  z-index: 1;
+}
+.education-card p {
+  margin: 0;
+  width: max-content;
+  padding: 8px 14px;
+  color: #d9ff3f;
+  background: rgba(3,3,3,.24);
+  border-radius: 999px;
+  font: 950 .95rem/1 "JetBrains Mono", monospace;
+}
+.education-card h3 {
+  max-width: 420px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 3.4vw, 3.75rem);
+  line-height: .98;
+  letter-spacing: -.06em;
+  overflow-wrap: break-word;
+}
+.education-card span {
+  max-width: 360px;
+  color: rgba(255,255,255,.78);
+  font-weight: 800;
+  line-height: 1.55;
+}
+.education-card strong {
+  width: max-content;
+  margin-top: 8px;
+  padding: 12px 18px;
+  color: #050505;
+  background: #d9ff3f;
+  border-radius: 999px;
+  box-shadow: 0 18px 34px rgba(217,255,63,.2);
+}
+.certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.certificate-card {
+  position: relative;
+  min-height: 360px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.16);
+  background:
+    radial-gradient(circle at 78% 6%, rgba(217,255,63,.12), transparent 24%),
+    linear-gradient(145deg, rgba(18,16,28,.98), rgba(35,29,54,.96));
+  box-shadow: 0 24px 70px rgba(3,3,3,.2), inset 0 1px rgba(255,255,255,.08);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.certificate-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: .65;
+}
+.certificate-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0,240,255,.36);
+  box-shadow: 0 28px 86px rgba(0,240,255,.14), inset 0 1px rgba(255,255,255,.1);
+}
+.certificate-card > * {
+  position: relative;
+  z-index: 1;
+}
+.certificate-preview {
+  height: 205px;
+  margin-bottom: 18px;
+  padding: 14px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(15,23,42,.06);
+}
+.certificate-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.portrait-certificate img {
+  width: auto;
+  max-width: 100%;
+}
+.certificate-card h3 {
+  margin: auto 0 8px;
+  color: #fff;
+  font-size: clamp(1.05rem, 1.25vw, 1.42rem);
+  line-height: 1.13;
+  letter-spacing: -.025em;
+}
+.certificate-card p {
+  margin: 0;
+  color: rgba(255,255,255,.62);
+  font-size: .88rem;
+  font-weight: 750;
+  line-height: 1.45;
+}
+body.light-theme .education-card,
+body.light-theme .education-card h3,
+body.light-theme .education-card span {
+  color: #fff;
+  -webkit-text-fill-color: currentColor;
+}
+body.light-theme .education-card p {
+  color: #d9ff3f;
+  -webkit-text-fill-color: currentColor;
+}
+body.light-theme .education-card strong {
+  color: #050505;
+  -webkit-text-fill-color: currentColor;
+}
+body.light-theme .certificate-card {
+  background:
+    radial-gradient(circle at 78% 6%, rgba(217,255,63,.13), transparent 24%),
+    linear-gradient(145deg, rgba(18,16,28,.99), rgba(35,29,54,.98));
+  border-color: rgba(15,23,42,.18);
+}
+body.light-theme .certificate-card h3 {
+  color: #fff;
+  -webkit-text-fill-color: currentColor;
+}
+body.light-theme .certificate-card p {
+  color: rgba(255,255,255,.68);
+  -webkit-text-fill-color: currentColor;
+}
+.recognition-preview {
+  min-height: 205px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(217,255,63,.26), transparent 35%),
+    linear-gradient(145deg, #111827, #241447);
+}
+.recognition-preview span {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  color: #050505;
+  background: linear-gradient(135deg, #d9ff3f, #48f0e0);
+  border-radius: 50%;
+  font-size: 2rem;
+  box-shadow: 0 0 34px rgba(72,240,224,.32);
+}
+.recognition-preview strong {
+  margin-top: 16px;
+  font-size: 1.25rem;
+}
+.recognition-preview small {
+  color: rgba(255,255,255,.62);
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
 .contact-card { padding: clamp(34px, 7vw, 80px); text-align: center; }
 .contact-intent {
   max-width: 760px;
@@ -2152,6 +2361,10 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   .experience-card { position: relative; top: auto; }
   footer { grid-template-columns: 1fr; }
   .work-grid, .skill-matrix, .credential-layout { grid-template-columns: repeat(2, 1fr); }
+  .credentials-showcase { grid-template-columns: 1fr; }
+  .education-card { position: relative; top: auto; min-height: 320px; }
+  .education-card h3 { font-size: clamp(1.8rem, 8vw, 3rem); max-width: 100%; }
+  .certificate-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-lab { min-height: 520px; }
   .robot-stage { position: relative; width: 100%; min-height: 520px; }
   .terminal-card { left: 20px; bottom: 18px; }
@@ -2162,6 +2375,11 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   .icon-btn { width: 42px; height: 42px; }
   .section { width: min(100% - 28px, 1180px); padding: 80px 0; }
   .work-grid, .skill-matrix, .credential-layout, .project-grid, .split-lane, .triple-lane { grid-template-columns: 1fr; }
+  .certificate-grid { grid-template-columns: 1fr; }
+  .certificate-preview { height: 190px; }
+  .certificate-card { min-height: 320px; }
+  .education-card { min-height: 280px; padding: 28px; }
+  .education-card h3 { font-size: clamp(1.75rem, 10vw, 2.45rem); letter-spacing: -.045em; }
   .project-card { min-height: 430px; }
   .robot-stage { min-height: 500px; border-radius: 34px; }
   .ai-robot { transform: translate(-50%, -50%) scale(.82); }
@@ -2940,6 +3158,12 @@ body.light-theme .pipeline-lab::before {
 }
 
 body.light-theme #pipeline-canvas {
+  background:
+    radial-gradient(circle at 47% 43%, rgba(20,184,166,.22), transparent 29%),
+    radial-gradient(circle at 22% 67%, rgba(6,182,212,.18), transparent 34%),
+    radial-gradient(circle at 78% 67%, rgba(37,99,235,.14), transparent 34%),
+    linear-gradient(145deg, rgba(236,253,245,.86), rgba(224,242,254,.78) 52%, rgba(245,243,255,.70));
+  border: 1px solid rgba(13,148,136,.22);
   filter:
     drop-shadow(0 24px 55px rgba(14,165,233,.20))
     drop-shadow(0 12px 28px rgba(13,148,136,.18)) !important;
@@ -2977,4 +3201,30 @@ body.light-theme .project-scene span {
 
 body.light-theme .project-scene strong {
   background: rgba(15,23,42,.80) !important;
+}
+
+/* Final credentials safety overrides: certificate cards intentionally stay dark/premium in light mode. */
+body.light-theme .education-card,
+body.light-theme .education-card h3,
+body.light-theme .education-card span,
+body.light-theme .certificate-card,
+body.light-theme .certificate-card h3,
+body.light-theme .certificate-card p {
+  -webkit-text-fill-color: currentColor !important;
+}
+body.light-theme .education-card h3,
+body.light-theme .education-card span,
+body.light-theme .certificate-card h3 {
+  color: #ffffff !important;
+}
+body.light-theme .certificate-card p {
+  color: rgba(255,255,255,.72) !important;
+}
+body.light-theme .education-card p {
+  color: #d9ff3f !important;
+  -webkit-text-fill-color: #d9ff3f !important;
+}
+body.light-theme .education-card strong {
+  color: #050505 !important;
+  -webkit-text-fill-color: #050505 !important;
 }
