@@ -991,6 +991,57 @@ document.querySelectorAll(".project-actions button").forEach((button) => {
   });
 });
 
+const enterpriseSection = document.querySelector("#architectures");
+const enterpriseGrid = enterpriseSection?.querySelector(".enterprise-showcase");
+const enterpriseCards = enterpriseGrid ? [...enterpriseGrid.querySelectorAll(".work-card")] : [];
+
+if (enterpriseSection && enterpriseGrid && enterpriseCards.length) {
+  const enterpriseShowcase = document.createElement("div");
+  const enterpriseRail = document.createElement("div");
+  const enterpriseDetailPanel = document.createElement("aside");
+
+  enterpriseShowcase.className = "enterprise-showcase enterprise-project-showcase";
+  enterpriseRail.className = "enterprise-project-rail";
+  enterpriseDetailPanel.className = "enterprise-project-detail-panel";
+  enterpriseDetailPanel.setAttribute("aria-live", "polite");
+
+  enterpriseGrid.replaceWith(enterpriseShowcase);
+  enterpriseShowcase.append(enterpriseRail, enterpriseDetailPanel);
+  enterpriseCards.forEach((card) => enterpriseRail.append(card));
+
+  function showEnterpriseDetail(card) {
+    enterpriseCards.forEach((item) => {
+      item.classList.toggle("active-enterprise-work", item === card);
+    });
+
+    const content = card.querySelector(".work-content");
+    if (!content) return;
+    enterpriseDetailPanel.innerHTML = "";
+    enterpriseDetailPanel.append(content.cloneNode(true));
+  }
+
+  showEnterpriseDetail(enterpriseCards[0]);
+
+  enterpriseCards.forEach((card) => {
+    card.addEventListener("pointerenter", () => showEnterpriseDetail(card));
+    card.addEventListener("focusin", () => showEnterpriseDetail(card));
+  });
+
+  const enterpriseObserver = new IntersectionObserver((entries) => {
+    const activeEntry = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    entries.forEach((entry) => {
+      entry.target.classList.toggle("enterprise-work-in-view", entry.isIntersecting);
+    });
+
+    if (activeEntry) showEnterpriseDetail(activeEntry.target);
+  }, { rootMargin: "-18% 0px -42% 0px", threshold: [0.15, 0.35, 0.55] });
+
+  enterpriseCards.forEach((card) => enterpriseObserver.observe(card));
+}
+
 document.querySelectorAll(".experience-more").forEach((button) => {
   button.addEventListener("click", () => {
     const card = button.closest(".experience-card");
