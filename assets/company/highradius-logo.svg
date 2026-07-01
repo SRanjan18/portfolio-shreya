@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-label="HighRadius">
+  <rect width="760" height="220" fill="none"/>
+  <g transform="translate(58 48)">
+    <path d="M62 0a62 62 0 0 1 62 62H62z" fill="#8fd14f"/>
+    <path d="M62 124A62 62 0 0 1 0 62h62z" fill="#23a9e0"/>
+    <path d="M0 62A62 62 0 0 1 62 0v62z" fill="#ff8a00"/>
+    <path d="M124 62a62 62 0 0 1-62 62V62z" fill="#dfe7ef"/>
+  </g>
+  <text x="210" y="138" font-family="Inter, Arial, sans-serif" font-size="78" font-weight="700" fill="#111827" letter-spacing="-2">highradius</text>
+</svg>

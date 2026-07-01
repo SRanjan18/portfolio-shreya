@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-label="Radar">
+  <rect width="640" height="220" fill="none"/>
+  <path d="M64 128c38-58 98-86 170-82" fill="none" stroke="#ff4b8b" stroke-width="16" stroke-linecap="round"/>
+  <path d="M64 128c58-32 125-40 198-20" fill="none" stroke="#36d9ff" stroke-width="16" stroke-linecap="round"/>
+  <path d="M64 128c72 2 139 24 202 66" fill="none" stroke="#ffb000" stroke-width="16" stroke-linecap="round"/>
+  <text x="190" y="144" font-family="Inter, Arial, sans-serif" font-size="94" font-weight="800" fill="#111827" letter-spacing="-4">Radar</text>
+</svg>
