@@ -2285,10 +2285,15 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   pointer-events: none;
 }
 body.light-theme .pipeline-lab::before {
-  background: rgba(15, 23, 42, 0.04);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(20, 184, 166, 0.15), rgba(255, 255, 255, 0) 34%),
+    radial-gradient(circle at 76% 72%, rgba(96, 165, 250, 0.11), rgba(255, 255, 255, 0) 36%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(240, 249, 255, 0.68));
   border: 1px solid rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(8px);
-  box-shadow: 0 22px 55px rgba(13, 148, 136, .06);
+  box-shadow:
+    0 22px 55px rgba(13, 148, 136, .08),
+    inset 0 1px 0 rgba(255, 255, 255, .86);
 }
 #pipeline-canvas {
   width: min(580px, 100%);
@@ -2301,7 +2306,7 @@ body.light-theme .pipeline-lab::before {
   filter: drop-shadow(0 28px 70px rgba(0,0,0,.18));
 }
 body.light-theme #pipeline-canvas {
-  filter: drop-shadow(0 22px 55px rgba(15,23,42,.12));
+  filter: drop-shadow(0 22px 55px rgba(13,148,136,.11));
 }
 .pipeline-caption {
   position: absolute;

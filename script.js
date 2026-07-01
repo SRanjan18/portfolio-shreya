@@ -268,8 +268,8 @@ function drawNeuralCoreIcon(context, x, y, r, impact = 0, light = false) {
   context.save();
   context.translate(x, y);
   const glow = context.createRadialGradient(0, 0, 0, 0, 0, r * 1.9);
-  glow.addColorStop(0, light ? `rgba(132,204,22,${.6 + impact * .2})` : `rgba(204,255,66,${.38 + impact * .45})`);
-  glow.addColorStop(.45, light ? "rgba(13,148,136,.18)" : "rgba(77,243,255,.18)");
+  glow.addColorStop(0, light ? `rgba(20,184,166,${.08 + impact * .06})` : `rgba(204,255,66,${.38 + impact * .45})`);
+  glow.addColorStop(.5, light ? "rgba(96,165,250,.045)" : "rgba(77,243,255,.18)");
   glow.addColorStop(1, light ? "rgba(255,255,255,0)" : "rgba(204,255,66,0)");
   context.fillStyle = glow;
   context.beginPath();
@@ -346,8 +346,8 @@ function drawPipeline() {
 
   const panel = pipelineCtx.createRadialGradient(w * .5, h * .43, 8, w * .5, h * .46, Math.max(w, h) * .72);
   if (light) {
-    panel.addColorStop(0, "rgba(255,255,255,.42)");
-    panel.addColorStop(.65, "rgba(226,232,240,.18)");
+    panel.addColorStop(0, "rgba(20,184,166,.045)");
+    panel.addColorStop(.58, "rgba(96,165,250,.032)");
     panel.addColorStop(1, "rgba(248,250,252,.02)");
   } else {
     panel.addColorStop(0, "rgba(0,191,255,.09)");
@@ -386,16 +386,16 @@ function drawPipeline() {
   paths.forEach((path, index) => {
     const gradient = pipelineCtx.createLinearGradient(path.a.px, path.a.py, path.c.px, path.c.py);
     if (light) {
-      gradient.addColorStop(0, "rgba(51,65,85,.34)");
-      gradient.addColorStop(.5, index === 2 ? "rgba(15,23,42,.24)" : "rgba(13,148,136,.32)");
-      gradient.addColorStop(1, "rgba(51,65,85,.34)");
+      gradient.addColorStop(0, "rgba(15,23,42,.45)");
+      gradient.addColorStop(.5, index === 2 ? "rgba(15,23,42,.45)" : "rgba(13,148,136,.48)");
+      gradient.addColorStop(1, "rgba(15,23,42,.45)");
     } else {
       gradient.addColorStop(0, `${path.a.color}aa`);
       gradient.addColorStop(.5, index === 2 ? "#ffffff55" : "#ccff4288");
       gradient.addColorStop(1, `${path.c.color}aa`);
     }
     pipelineCtx.strokeStyle = gradient;
-    pipelineCtx.lineWidth = index === 2 ? 1.25 : 2.2;
+    pipelineCtx.lineWidth = light ? (index === 2 ? 1.8 : 2.65) : (index === 2 ? 1.25 : 2.2);
     pipelineCtx.setLineDash(index === 2 ? [7, 12] : [10, 14]);
     pipelineCtx.lineDashOffset = -time * 18 - index * 8;
     pipelineCtx.beginPath();
@@ -425,12 +425,12 @@ function drawPipeline() {
     const comet = pipelineCtx.createLinearGradient(tailPoint.x, tailPoint.y, point.x, point.y);
     comet.addColorStop(0, `${color}00`);
     comet.addColorStop(.55, `${color}88`);
-    comet.addColorStop(1, "#ffffff");
+    comet.addColorStop(1, light ? color : "#ffffff");
     pipelineCtx.strokeStyle = comet;
-    pipelineCtx.lineWidth = packet.size * 1.65;
+    pipelineCtx.lineWidth = packet.size * (light ? 1.95 : 1.65);
     pipelineCtx.lineCap = "round";
-    pipelineCtx.shadowColor = light ? "transparent" : color;
-    pipelineCtx.shadowBlur = light ? 0 : 18;
+    pipelineCtx.shadowColor = light ? `${color}55` : color;
+    pipelineCtx.shadowBlur = light ? 4 : 18;
     pipelineCtx.beginPath();
     pipelineCtx.moveTo(tailPoint.x, tailPoint.y);
     pipelineCtx.lineTo(point.x, point.y);
@@ -463,8 +463,8 @@ function drawPipeline() {
     const impact = Math.max(pipelineImpacts[index], hovered ? .32 : 0);
     const glow = pipelineCtx.createRadialGradient(node.px, node.py, 0, node.px, node.py, node.r * 2.6);
     if (light) {
-      glow.addColorStop(0, `rgba(132,204,22,${.34 + impact * .34})`);
-      glow.addColorStop(.48, "rgba(13,148,136,.14)");
+      glow.addColorStop(0, `rgba(20,184,166,${.075 + impact * .09})`);
+      glow.addColorStop(.46, "rgba(96,165,250,.04)");
       glow.addColorStop(1, "rgba(255,255,255,0)");
     } else {
       glow.addColorStop(0, `${node.color}${impact > .4 ? "dd" : hovered ? "bb" : "66"}`);
@@ -492,7 +492,7 @@ function drawPipeline() {
       roundRect(pipelineCtx, Math.max(20, Math.min(w - tw - 20, node.px - tw / 2)), tooltipY, tw, 32, 16);
       pipelineCtx.fill();
       pipelineCtx.stroke();
-      pipelineCtx.fillStyle = node.color;
+      pipelineCtx.fillStyle = light ? "#334155" : node.color;
       pipelineCtx.fillText(text, Math.max(20 + tw / 2, Math.min(w - 20 - tw / 2, node.px)), tooltipY + 17);
     }
   });
@@ -654,7 +654,7 @@ function drawInteractiveBackground() {
   const baseLine = light ? [13, 148, 136] : [0, 240, 255];
   const accentLine = light ? [2, 132, 199] : [0, 255, 170];
   const violetLine = light ? [13, 148, 136] : [168, 85, 247];
-  const tokenColor = light ? "rgba(13, 148, 136, .12)" : "rgba(224, 255, 250, .22)";
+  const tokenColor = light ? "rgba(51, 65, 85, .18)" : "rgba(224, 255, 250, .22)";
 
   for (const point of backgroundPoints) {
     const dx = point.x - mouse.x;
