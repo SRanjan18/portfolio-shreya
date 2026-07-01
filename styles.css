@@ -4330,3 +4330,71 @@ body.light-theme .experience-card p,
 body.light-theme .experience-card .role-timeline small {
   color: rgba(255, 255, 255, .78);
 }
+
+/* Complete Soumya-style experience visuals: branded scene panels + clean extracted logos. */
+.experience-visual .org-shot {
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .22);
+}
+
+.experience-visual .org-shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .92;
+}
+
+.experience-visual .org-shot::before {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 18, .05), rgba(5, 7, 18, .8)),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.08) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 1px, transparent 1px 48px);
+}
+
+.experience-visual .org-logo-mark {
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid rgba(255, 255, 255, .78);
+}
+
+.accenture-shot::after {
+  background:
+    radial-gradient(circle at 26% 22%, rgba(172, 62, 255, .72), transparent 24%),
+    linear-gradient(135deg, rgba(118, 39, 255, .72), rgba(20, 11, 49, .96)),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.13) 0 2px, transparent 2px 54px);
+}
+
+.amazon-shot::after {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 190, 77, .82), transparent 28%),
+    linear-gradient(135deg, rgba(255, 123, 24, .88), rgba(28, 13, 11, .96)),
+    repeating-linear-gradient(115deg, rgba(255,255,255,.10) 0 2px, transparent 2px 42px);
+}
+
+.wiz-shot::after {
+  background:
+    radial-gradient(circle at 30% 18%, rgba(77, 243, 255, .7), transparent 27%),
+    linear-gradient(135deg, rgba(0, 126, 144, .88), rgba(13, 18, 54, .96)),
+    repeating-linear-gradient(30deg, rgba(255,255,255,.10) 0 1px, transparent 1px 38px);
+}
+
+.highradius-shot {
+  background: none;
+}
+
+.highradius-shot::after {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(56, 189, 248, .72), transparent 27%),
+    linear-gradient(135deg, rgba(20, 133, 166, .9), rgba(25, 22, 76, .98)),
+    repeating-linear-gradient(120deg, rgba(255,255,255,.12) 0 2px, transparent 2px 46px);
+}
+
+.org-shot strong {
+  color: #fff;
+}
+
+.org-shot span {
+  color: rgba(255, 255, 255, .78);
+}
