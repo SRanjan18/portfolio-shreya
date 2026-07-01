@@ -1719,6 +1719,79 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
 .logo-vercel::before { content: "▲"; color: #fff; font-size: 1.6rem; }
 .logo-render::before { content: "R"; color: #46e3b7; font-size: 1.5rem; }
 .logo-test::before { content: "✓"; color: #ccff42; font-size: 1.8rem; }
+
+/* Prefer authentic vendor marks where reliable public SVG marks exist; keep custom symbols only for abstract skills. */
+.logo-python,
+.logo-html,
+.logo-css,
+.logo-postgres,
+.logo-mysql,
+.logo-pandas,
+.logo-azure,
+.logo-claude,
+.logo-gemini,
+.logo-hf,
+.logo-chain,
+.logo-flask,
+.logo-streamlit,
+.logo-js,
+.logo-react,
+.logo-git,
+.logo-github,
+.logo-vercel,
+.logo-render {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.logo-python::before,
+.logo-python::after,
+.logo-html::before,
+.logo-css::before,
+.logo-postgres::before,
+.logo-mysql::before,
+.logo-pandas::before,
+.logo-azure::before,
+.logo-claude::before,
+.logo-gemini::before,
+.logo-hf::before,
+.logo-chain::before,
+.logo-flask::before,
+.logo-streamlit::before,
+.logo-js::before,
+.logo-react::before,
+.logo-git::before,
+.logo-github::before,
+.logo-vercel::before,
+.logo-render::before {
+  content: none !important;
+}
+.logo-python { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"); }
+.logo-html { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"); }
+.logo-css { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"); }
+.logo-postgres { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"); }
+.logo-mysql { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"); }
+.logo-pandas { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg"); }
+.logo-azure { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg"); }
+.logo-claude { background-image: url("https://cdn.simpleicons.org/claude/D97745"); }
+.logo-gemini { background-image: url("https://cdn.simpleicons.org/googlegemini/8E75B2"); }
+.logo-hf { background-image: url("https://cdn.simpleicons.org/huggingface/FFD21E"); }
+.logo-chain { background-image: url("https://cdn.simpleicons.org/langchain/1C3C3C"); }
+.logo-flask { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg"); filter: invert(1); }
+.logo-streamlit { background-image: url("https://cdn.simpleicons.org/streamlit/FF4B4B"); }
+.logo-js { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"); }
+.logo-react { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"); }
+.logo-git { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"); }
+.logo-github { background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"); filter: invert(1); }
+.logo-vercel { background-image: url("https://cdn.simpleicons.org/vercel/ffffff"); }
+.logo-render { background-image: url("https://cdn.simpleicons.org/render/46E3B7"); }
+body.light-theme .logo-flask,
+body.light-theme .logo-github {
+  filter: none;
+}
+body.light-theme .logo-vercel {
+  background-image: url("https://cdn.simpleicons.org/vercel/0F172A");
+}
 .ticker { overflow: hidden; margin-top: 28px; border-block: 1px solid var(--line); }
 .ticker div { display: flex; width: max-content; gap: 46px; padding: 22px 0; animation: ticker 12s linear infinite; }
 .ticker span { color: var(--lime); font: 900 1.2rem "JetBrains Mono", monospace; text-transform: uppercase; }
@@ -2240,14 +2313,11 @@ pre { margin: 0; padding: 24px; color: #dffbff; font-family: "JetBrains Mono", m
   border-radius: 8px;
 }
 .portrait-certificate img {
-  width: auto;
+  width: 100%;
   height: 100%;
   max-width: 100%;
-  object-fit: contain;
-}
-.certificate-preview.portrait-certificate {
-  height: 255px;
-  padding: 10px;
+  object-fit: cover;
+  object-position: center;
 }
 .certificate-card h3 {
   margin: auto 0 8px;
@@ -2338,22 +2408,29 @@ body.light-theme .certificate-card p {
 }
 .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 24px; }
 .contact-actions a.primary-contact {
-  min-width: 190px;
+  min-width: 0;
+  width: 58px;
+  height: 58px;
+  padding: 0;
   background: linear-gradient(135deg, var(--lime), var(--cyan));
   color: #071019;
 }
 .contact-actions a.linkedin-contact {
+  width: 58px;
+  height: 58px;
+  padding: 0;
   color: #fff;
   background: linear-gradient(135deg, #0a66c2, var(--violet));
 }
 .contact-icon-link {
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  gap: 9px;
+  gap: 0;
 }
 .contact-icon-link svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 1.3rem;
+  height: 1.3rem;
   fill: currentColor;
   flex: 0 0 auto;
 }
